@@ -1,0 +1,130 @@
+// stylos para el sistema SERVIR
+
+// DEFINIENDO COLORES PRINCIPALES
+	// COLORES PRIMARIOs
+		$rojoBaseA:#840100;
+		$rojoBaseB:#BA0400;
+		$textoBase:#1A171B;
+
+// DEFINIENDO TIPOGRAFIA PRINCIPALES
+		$roboto:'Roboto', sans-serif;
+
+// DEFINIENDO  COLORES PLOMOS INPUT,SELECT,TEXTAREA,Y OTROS
+        $plomo:#BDC3C7;
+// COLOR PLOMO OSCURO NAV
+        $plomoOscuro:#1A171B;
+// COLOR BLANCO GRIS PARA LOS TEXTO DEL MENU GENERAL
+        $blancoPlomo:#dfdfdf;
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,300italic,100italic,400italic,500,700);
+
+
+// Estilos para el login
+
+#main-login{
+	background: #fff;
+	min-width: 309px;
+	width: 27%;
+	margin: 0 auto;
+	max-width: 33%;
+	margin-top: 10%;
+	box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+	#linkOlvidopass{font-size:12px;}
+	#headerLogin{
+		background: $plomoOscuro;
+		color:#fff;
+		font-family: $roboto;
+		img{
+			display: inline-block;
+			vertical-align: middle;
+
+		}
+		.sijaLogo{
+			font-size: 30px;
+			display: inline-block;
+			line-height: 65px;
+			vertical-align: middle;
+			height:66px;
+
+		}
+		.sijatexto{
+			font-size:15px;
+			padding: 10px 0;
+			display: block;
+			opacity:.6;
+
+		}
+		.colorCeleste{
+			text-align:center;
+			background:$rojoBaseB;
+		}
+	}
+	i{
+		opacity:.7;
+		color:$roboto;
+	}
+	.ui-inputfield, .input-group-addon{
+		border-radius:0px;
+		background: none;
+	}
+	input{
+		outline: none;
+		box-shadow:none;
+	}
+	button{
+		border-radius:0;text-shadow: none;color:#fff;
+		background: $rojoBaseB;
+		width: 100%;
+		padding: 4px;
+	}
+	.checkbox{font-size: 13px;margin: 15px 0 0;
+		span{vertical-align:3px;margin-left: 4px}}
+	.right{
+		a{
+			color:$plomoOscuro;
+			opacity:.7;
+			font-size:13px;
+			display: block;
+		&:hover{
+			color:$roboto;
+			text-decoration: underline;
+		}
+		}
+		}
+
+	form{padding:40px 15px;
+
+	input[placeholder] {
+   		 color: #808080;
+   		 font-size: 12px;
+   		 font-style: oblique;
+}
+	}
+}
+
+.navegador, #boxNave{
+	font-size:11px;
+	opacity:.6;
+	display:inline-block;
+	vertical-align:middle;
+	margin-right:5px;
+}
+#firefox, #chrome{
+	display:inline-block;
+	vertical-align:middle;
+	width: 27px;
+	height:27px;
+	background-size:64px auto !important;
+	opacity: .4;
+	transition: all 150ms ease-out;
+	&:hover{
+	opacity: 1;
+	}
+}
+#firefox{
+	background:url("../img/sprites.png") -38px 0 no-repeat;
+}
+#chrome{
+	background:url("../img/sprites.png") 0 0 no-repeat ;
+	margin-right:0px;
+}

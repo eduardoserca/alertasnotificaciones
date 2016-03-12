@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html
+    lang="es" class="no-js"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title><ui:insert name="title">Sistema de Consultas Externas</ui:insert></title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=7,8,9" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/faces/resources/img/favicon.ico"/>       
+        <h:outputStylesheet name="./css/bootstrap.min.css" />
+        <h:outputStylesheet name="./css/fonts.css" />
+        <h:outputStylesheet name="./css/styles.css" />
+        <h:outputStylesheet name="./css/css_font/fontello.css"/>
+        <h:outputStylesheet name="./css/css_font/animation.css"/>
+        <h:outputStylesheet name="./css/font-awesome.min.css"/>
+        <h:outputStylesheet name="./css/main.css" />
+        
+        <h:outputScript name ="./js/prefixfree.min.js" />
+        <h:outputScript name ="./js/barrarScroll.js" />
+        <h:outputScript name ="./js/bootstrap.min.js"/>
+
+        <h:outputScript name="./js/main/app.js" />
+        <h:outputScript name="./js/validator.js" />
+        <h:outputScript name="./js/primefaces-locale-es.js" />
+        <h:outputScript name="./js/modernizr.js"/>
+        <h:outputScript name="./js/browser.js"/> 
+        <h:outputText
+       value="&lt;!--[if IE 7]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;fontello-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
+        escape="false" />
+        
+        <h:outputText
+       value="&lt;!--[if lte IE 7]&gt;&lt;link rel=&quot;stylesfont-awesome.min.cssheet&quot; href=&quot;ie6-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
+        escape="false" />
+
+        <h:outputText>
+            <!-- <link type="text/css" rel="stylesheet" href="./css/ie.css"/> -->
+        </h:outputText>
+
+        <!--[if IE 9]>
+            <link type="text/css" rel="stylesheet" href="./css/ie.css"
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+          <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" value="x"></script>
+        <![endif]-->
+
+        <!--[if gte IE 9]>
+        <style type="text/css">
+        .gradient {
+        filter: none;
+        }
+        </style>
+        <![endif]-->
+
+
+        <ui:insert name="headCont"></ui:insert>
+
+    </h:head>
+<h:body>
+
+    <!-- HEADER END-->
+    <div class="navbar navbar-inverse set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a id="box-logo" class="navbar-brand" href="../inicio/home.xhtml">
+                    servir
+                </a>
+            </div>
+
+            <div class="left-div">
+                <span>Sistema de Consultas Externas</span>
+                <small>Version 1.0.0.0</small>
+            </div>
+        </div>
+    </div>
+    <!-- LOGO HEADER END-->
+    <div class="content-wrapper box_main_app">
+
+        <div id="box-top-inf">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div id="box-info-user" style="font-size:12px;font-weight: 300;">
+                            <i class="fa fa-calendar" style="opacity:0.6;margin-right: 8px;"></i>
+                                <span id="date_box" ></span>
+                            <i class="fa fa-clock-o" style="opacity:0.6;margin-left: 10px;"></i>
+                                <span id="time_box"></span>
+                        </div>
+                    </div>
+                    <div id="box-info-user-sidel" class="col-md-8 col-sm-8">
+                            <div class="row text-right">
+                                <div class="col-md-10 col-sm-10">
+                                    <span class="text-nav-i">Bienvenido,</span>
+                                    <span class="text-nav-bold">#{homeMB.usuario.persona.nombres} #{homeMB.usuario.persona.apellidoPaterno} #{homeMB.usuario.persona.apellidoMaterno}</span>
+                                    <span class="text-nav-i">#{homeMB.usuario.perfil.descripcion}</span>
+                                    <span class="text-nav-bold">SERVIR</span>
+                                </div>
+                                <div class="col-md-2 col-sm-2">
+                                	<h:form >
+                                        <p:commandLink id="btn-cerrar-sc" update="growl" ajax="false"  action="#{seguridadMB.cerrarSesion()}">
+                                            <h:outputText value="Cerrar" />
+                                        </p:commandLink>
+                                   </h:form>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="box-main-container" class="container row-offcanvas">
+
+            <div id="menu-left" class="sidebar-offcanvas">
+                <div class="wrapper row-offcanvas row-offcanvas-left">
+
+                    <aside class="left-side sidebar-offcanvas">
+
+                        <section class="sidebar" id="nav_left_sgac">
+                            <div id="btn-hidden-nav" class="toggleBtn">
+                                <a href="#" data-toggle="offcanvas"><i class="fa fa-bars"></i> Menú
+                                </a>
+                            </div>
+
+                            <ul class="sidebar-menu">
+                                <ui:remove>
+                            <!--
+                            	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_INICIO')}">
+                           	-->
+                                </ui:remove>
+                                <li class="active">
+                                    <a href="../inicio/home.xhtml">
+                                        <span>Inicio</span>
+                                    </a>
+                                </li>
+                             <!-- 
+                                </h:outputLabel>
+ 							-->
+
+<!-- 
+                                <li class="treeview">
+
+                                    <a href="#">
+                                        <span>Archivo (registro)</span>
+                                        <i class="topSpace fa fa-angle-left pull-right"></i>
+                                    </a>
+
+                                    <ul class="treeview-menu">                                     
+                                        <li><a href="../archivo/archivo_central_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Central</a></li>
+                                        <li><a href="../archivo/archivo_gestion_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Gestión</a></li>
+                                        <li><a href="../archivo/archivo_periferico_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Periferico</a></li>
+                                   </ul>
+                                </li>
+ -->                            <ui:remove>
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA')}">
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <span>Bandeja</span>
+                                            <i class="topSpace fa fa-angle-left pull-right"></i>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                        	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_ENVI')}">
+                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Enviados</a></li>
+                                        	</h:outputLabel>
+                                          	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_REC')}">
+                                            	<li><a href="../tramite/bandeja_recibido.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Recibidos</a></li>
+											</h:outputLabel>                                          	
+                                          	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_ARCH')}">
+                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Archivados</a></li>
+											</h:outputLabel>
+											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_SEGUIMIENTO')}">
+                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Seguimiento</a></li>
+											</h:outputLabel>
+                                        </ul>
+                                    </li>
+								</h:outputLabel>
+                            </ui:remove>
+                            <ui:remove>
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REG_DOCUMEN_EXT')}">
+	                                <li class="active">
+	                                    <a href="../tramite/documento_externo.xhtml">
+	                                        <span>Documento Externo</span>
+	                                    </a>
+	                                </li>
+								</h:outputLabel>
+								
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REG_DOC_INTER')}">
+	                                <li class="active">
+	                                    <a href="../tramite/documento_interno.xhtml">
+	                                        <span>Documento Interno</span>
+	                                    </a>
+	                                </li>
+								</h:outputLabel>
+								
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_CONSULTA')}">
+	                                <li class="active">
+	                                    <a href="../inicio/home.xhtml">
+	                                        <span> Consulta</span>
+	                                    </a>
+	                                </li>
+								</h:outputLabel>
+						    
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REPORTE')}">
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <span>Reporte</span>
+                                            <i class="topSpace fa fa-angle-left pull-right"></i>
+                                        </a>
+                                        <ul class="treeview-menu">
+								            <h:form styleClass="menu-sub-list-rep">
+
+                                        		<li>
+	                                        		 <p:commandButton     value="Servicio" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+								               </li>                       	
+
+                                            	<li>
+                                            		 <p:commandButton     value="Registro" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+									            </li>
+
+                                            	<li>
+                                            		<p:commandButton     value="Consulta" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+                                            	</li>
+
+                                            	<li>
+                                            		<p:commandButton     value="Descarga" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+                                            	</li>                                          
+
+                                            	<li>
+                                            		<p:commandButton      value="Prestamo" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+                                            	</li>
+
+                                            	<li>
+                                            		<p:commandButton      value="Acceso" 
+									                                      icon="fa fa-pie-chart" 
+									                                      styleClass="btnlinkMenu" 
+									                                      action="ruta1"
+									                                      ajax="false"/>
+                                            	</li>
+
+                                            </h:form>
+                                        </ul>
+                                    </li>
+								</h:outputLabel>
+								
+								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION')}">
+                                    <li class="treeview">
+                                        <a href="#">
+                                            <span>Administrador</span>
+                                            <i class="topSpace fa fa-angle-left pull-right"></i>
+                                        </a>
+                                        <ul class="treeview-menu">
+											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_USUARIO')}">
+                                            	<li><a href="../inicio/home.xhtml"><i class="icon-users"></i> Usuario</a></li>
+											</h:outputLabel>
+											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_PERFIL')}">
+                                            	<li><a href="../inicio/home.xhtml"><i class="icon-check"></i> Perfil</a></li>
+											</h:outputLabel>
+											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_ACCESO')}">
+                                            	<li><a href="../administracion/acceso.xhtml"><i class="icon-link"></i> Acceso</a></li>
+											</h:outputLabel>
+                                        </ul>
+                                    </li>
+								</h:outputLabel>
+                            </ui:remove>
+                                <li class="treeview">
+                                    <a href="#">
+                                        <span>Ayuda</span>
+                                        <i class="topSpace fa fa-angle-left pull-right"></i>
+                                    </a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="../inicio/home.xhtml"><i class="icon-book"></i> Manuales</a></li> 
+                                        <li><a href="../inicio/home.xhtml"><i class="icon-info"></i> Acerca de </a></li>
+                                       <!-- <li><a href="../../faces/ayuda/mapa_web.xhtml"><i class="icon-map"></i> Sitio Web</a></li>-->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- /.sidebar -->
+                    </aside>
+                </div>
+            </div>
+
+
+                <div id="main-content-sidel">
+                    <div class="row">
+                        <span id="btn-hidden-conten" class="icon-cancel"></span>
+                        <div class="col-md-12">
+                            <h4 class="page-head-line">
+                                <i id="btnCancelWindow" class="icon-cancel"></i>
+                                <ui:insert name="titlePages">
+                                    <span>Bienvenido</span>
+                                </ui:insert>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row spac-top-10">
+                        <div class="col-md-12">
+                            <ol id="info-nav" class="breadcrumb">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon-home"></span>
+                                    </a>
+                                </li>
+                                <ui:insert name="urlNavegacion">
+
+                                </ui:insert>
+                            </ol>
+                        </div>
+                    </div>
+                    <ui:insert name="content">
+
+                    </ui:insert>
+                </div>
+        </div>
+    </div>
+
+    <!-- CONTENT-WRAPPER SECTION END-->
+    <footer>
+    <div class="grisFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6" style="margin-top: 6px;">
+                     <p><small>Aplicativo Administrado por la Subjefatura de Tecnología de la Información</small></p>
+                     <p><small>Pasaje Francisco de Zela 150 - Piso 10, Jesus María, Lima, Perú</small></p>
+                     <p><small><span class="icon-mobile"></span>206 3370 Anexo 1100 | <span class="glyphicon glyphicon-envelope"></span> info@servir.gob.pe </small></p>
+                </div>
+				<div class="col-md-6 text-right">
+					<img src="../../resources/img/img_inst.png" alt="" width="450px" style="padding:10px 0" />
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="redFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                     <span>Autoridad Nacional del Servicio Civil (SERVIR) - Todos los derechos reservados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <!-- FOOTER SECTION END-->
+    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
+    <!-- CORE JQUERY SCRIPTS -->
+<!--     <script src="assets/js/jquery-1.11.1.js"></script> -->
+    <!-- BOOTSTRAP SCRIPTS  -->
+<!--     <script src="assets/js/bootstrap.js"></script> -->
+<h:outputScript name="./js/jquery.jtime.js"/>
+<h:outputScript name="./js/scripts.js"/>
+<script>
+    $(document).ready(function(){
+      $('#time_box').jTime();
+    });
+</script> 
+<ui:insert name="footerCont"></ui:insert>
+</h:body>
+</html>

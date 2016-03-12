@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>alertanotificaciones</artifactId>
+        <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+    <artifactId>alertanotificaciones-ear</artifactId>
+    <packaging>ear</packaging>
+    <version>1.0</version>
+    <name>alertanotificaciones-ear</name>
+    <url>http://maven.apache.org</url>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+            <artifactId>alertanotificaciones-ejb</artifactId>
+            <version>1.0</version>
+            <type>ejb</type>
+        </dependency>
+
+        <dependency>
+            <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+            <artifactId>alertanotificaciones-web</artifactId>
+            <version>1.0</version>
+            <type>war</type>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <version>5</version>
+                    <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+                    <modules>
+                        <ejbModule>
+                            <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+                            <artifactId>alertanotificaciones-ejb</artifactId>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>pe.gob.servir.sistemas.alertanotificaciones</groupId>
+                            <artifactId>alertanotificaciones-web</artifactId>
+                        </webModule>
+
+                    </modules>
+                </configuration>
+            </plugin>
+
+            <!-- Deployent on AS from console -->
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>7.3.Final</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <hostname>localhost</hostname>
+                            <username>admin</username>
+                            <password>Jbo$$123</password>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>
