@@ -13,6 +13,7 @@ public class Opcion  extends BasicObject {
     private static final long serialVersionUID = 1L;
 
     private Long opcionId;
+    private String codigoOpcion;
     private String descripcion;
     private String estado;
     private Long orden;
@@ -74,5 +75,13 @@ public class Opcion  extends BasicObject {
 
     public void setListaSubOpciones(List<SubOpcion> listaSubOpciones) {
         this.listaSubOpciones = listaSubOpciones;
+    }
+
+    public String getCodigoOpcion() {
+        return codigoOpcion;
+    }
+
+    public void setCodigoOpcion(String codigoOpcion) {
+        this.codigoOpcion = codigoOpcion;
     }
 }

@@ -5,6 +5,20 @@
               version="2.0">
 
 
+    <application>
+        <resource-bundle>
+            <base-name>Messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>es</default-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>Constants</base-name>
+            <var>cons</var>
+        </resource-bundle>
+    </application>
+
 
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -18,6 +32,44 @@
             <from-outcome>login</from-outcome>
             <to-view-id>/seguridad/login.xhtml</to-view-id>
         </navigation-case>
+
+        <navigation-case>
+            <from-outcome>OP_DASBORAD_SO_VER</from-outcome>
+            <to-view-id>/modulo/dashboard/ver.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>OP_CONTROL_TAREAS_SO_CARTA_FIANZA</from-outcome>
+            <to-view-id>/modulo/control-tareas/carta-fianza.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>OP_CONTROL_TAREAS_SO_DECLARACION_JURADA</from-outcome>
+            <to-view-id>/modulo/control-tareas/declaracion-jurada.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>OP_CONTROL_TAREAS_SO_TAREAS_GENERALES</from-outcome>
+            <to-view-id>/modulo/control-tareas/tarea-generales.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>OP_SEGURIDAD_SO_USUARIOS</from-outcome>
+            <to-view-id>/modulo/seguridad/usuario/usuario.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>OP_SEGURIDAD_SO_PERFILES</from-outcome>
+            <to-view-id>/modulo/seguridad/perfil/perfil.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>OP_REPORTES_SO_CARTA_FIANZA</from-outcome>
+            <to-view-id>/modulo/reportes/carta_fianza.xhtml</to-view-id>
+        </navigation-case>
+
+        <navigation-case>
+            <from-outcome>OP_REPORTES_SO_DECLARACION_JURADA</from-outcome>
+            <to-view-id>/modulo/reportes/declaracion-jurada.xhtml</to-view-id>
+        </navigation-case>
+
 
     </navigation-rule>
 

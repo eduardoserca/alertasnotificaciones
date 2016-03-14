@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+
+
+    <p:confirmDialog message="Registro de Perfiles"
+                     id="modalRegistroPerfil"
+                     showEffect="fade"
+                     styleClass="modal-confirmation"
+                     modal="true"
+                     hideEffect="explode"
+                     widgetVar="wModalRegistroPerfil"
+                     width="50%">
+
+
+        <fieldset>
+            <h:form id="frmFormularioRegistro">
+                <div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <h:outputLabel for="txtCodigoPerfil" value="Codigo Perfil: "
+                                           styleClass="control-label"/>
+                            <p:inputText id="txtCodigoPerfil"
+                                         value="#{perfilMB.perfilRegistrar.codigoPerfil}"></p:inputText>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <h:outputLabel for="txtNombrePerfil" value="Perfil: " styleClass="control-label"/>
+                            <p:inputText id="txtNombrePerfil"
+                                         value="#{perfilMB.perfilRegistrar.nombrePerfil}"></p:inputText>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <h:outputLabel for="cboRegistraEstado" value="Estado: " styleClass="control-label"/>
+                            <p:selectOneMenu id="cboRegistraEstado" value="#{perfilMB.perfilRegistrar.estado}"
+                                             styleClass="form-control style-select">
+                                <f:selectItem itemValue="" itemLabel="Seleccione"/>
+                                <f:selectItem itemValue="1" itemLabel="Activo"/>
+                                <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+                            </p:selectOneMenu>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <h:outputLabel for="txtDescripcionPerfil" value="Descripcion: "
+                                           styleClass="control-label"/>
+                            <p:inputTextarea id="txtDescripcionPerfil"
+                                             value="#{perfilMB.perfilRegistrar.descripcion}"></p:inputTextarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row box-mb"
+                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                    <div class="col-sm-12 text-right box-main-btn">
+
+                        <p:commandButton value="Grabar"
+                                         styleClass="btn btn-primary btn-sensitive"
+                                         icon="icon-plus ocultarImgIcon"
+                                         ajax="true"
+                                         update=":modalRegistroPerfil"
+                                         onclick="PF('statusDialog').show()"
+                                         oncomplete="PF('statusDialog').hide()"
+                                         actionListener="#{perfilMB.registrarPerfil}"/>
+
+
+                        <p:commandButton id="btnCancelar"
+                                         value="Cancelar"
+                                         styleClass="btn btn-default btn-sensitive btn-buscar"
+                                         oncomplete="PF('wModalRegistroPerfil').hide()"
+                                         ajax="true"
+                                         actionListener="#{perfilMB.cancelarRegistrarPerfil}"/>
+
+                    </div>
+                </div>
+            </h:form>
+        </fieldset>
+
+        <div class="row text-right box-dig-btn"></div>
+
+    </p:confirmDialog>
+
+    <p:confirmDialog id="cnfEndTransaction"
+                     message="Registro Satisfactorio"
+                     closable="false"
+                     showEffect="fade"
+                     styleClass="modal-confirmation"
+                     modal="true"
+                     hideEffect="explode"
+                     widgetVar="cnfwEndTransaction"
+                     width="30%">
+
+
+        <div class="row" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+
+            <p:outputLabel value="Perfil registrado satisfactoriamente."/>
+
+            <h:panelGrid width="100%" border="0" id="idPnlGridEndTransaction"
+                         cellpadding="2" cellspacing="2" style="text-align:center;">
+
+                <p:commandButton id="cmbConfirmTransactionOk"
+                                 value="#{msgs['btn.accept']}"
+                                 styleClass="btn btn-default btn-sensitive btn-buscar"
+                                 oncomplete="PF('cnfwEndTransaction').hide()"/>
+
+
+            </h:panelGrid>
+
+        </div>
+
+        <div class="row text-right box-dig-btn"></div>
+
+    </p:confirmDialog>
+
+
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
+              showHeader="false">
+        <p:graphicImage value="../resources/img/loadingbar.gif"/>
+    </p:dialog>
+
+
+</ui:composition>
+</html>

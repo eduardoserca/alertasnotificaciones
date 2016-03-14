@@ -64,7 +64,7 @@ public class PerfilOpcionDaoImpl  extends GenericDAOImpl<PerfilOpcion> implement
         hbSession.doWork(new Work() {
             @Override
             public void execute(Connection connection) throws SQLException {
-                System.out.println("CESC 6 connection: " + connection);
+
                 CallableStatement cstm = null;
 
                 try{
@@ -90,8 +90,10 @@ public class PerfilOpcionDaoImpl  extends GenericDAOImpl<PerfilOpcion> implement
                         perfilOpcion.setPerfil(new Perfil());
                         perfilOpcion.getPerfil().setPerfilId(rs.getLong("PERFIL_ID"));
                         perfilOpcion.getPerfil().setDescripcion(rs.getString("PERFIL_DES"));
+                        perfilOpcion.getPerfil().setCodigoPerfil(rs.getString("CODIGO_PERFIL"));
                         perfilOpcion.setOpcion(new Opcion());
                         perfilOpcion.getOpcion().setOpcionId(rs.getLong("OPCION_ID"));
+                        perfilOpcion.getOpcion().setCodigoOpcion(rs.getString("CODIGO_OPCION"));
                         perfilOpcion.getOpcion().setDescripcion(rs.getString("OPCION_DES"));
                         perfilOpcion.getOpcion().setOrden(rs.getLong("OPCION_ORDEN"));
 
@@ -112,4 +114,8 @@ public class PerfilOpcionDaoImpl  extends GenericDAOImpl<PerfilOpcion> implement
 
         return listaPerfilOpcion;
     }
+
+
+
+
 }

@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html
     lang="es" class="no-js"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -7,8 +10,8 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <meta charset="utf-8"/>
-        <title><ui:insert name="title">Sistema de Consultas Externas</ui:insert></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title><ui:insert name="title">Sistema de Alertas y Notificaciones</ui:insert></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta http-equiv="X-UA-Compatible" content="IE=7,8,9" />
         <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/faces/resources/img/favicon.ico"/>       
@@ -146,151 +149,39 @@
                                 </h:outputLabel>
  							-->
 
-<!-- 
-                                <li class="treeview">
 
-                                    <a href="#">
-                                        <span>Archivo (registro)</span>
-                                        <i class="topSpace fa fa-angle-left pull-right"></i>
-                                    </a>
+                                <ui:repeat value="#{homeMB.usuario.perfil.listaPerfilOpcion}" var="perfilOpcion">
 
-                                    <ul class="treeview-menu">                                     
-                                        <li><a href="../archivo/archivo_central_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Central</a></li>
-                                        <li><a href="../archivo/archivo_gestion_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Gestión</a></li>
-                                        <li><a href="../archivo/archivo_periferico_listado.xhtml"><i class="fa fa-file-archive-o"></i> Archivo Periferico</a></li>
-                                   </ul>
-                                </li>
- -->                            <ui:remove>
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA')}">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <span>Bandeja</span>
-                                            <i class="topSpace fa fa-angle-left pull-right"></i>
-                                        </a>
-                                        <ul class="treeview-menu">
-                                        	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_ENVI')}">
-                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Enviados</a></li>
-                                        	</h:outputLabel>
-                                          	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_REC')}">
-                                            	<li><a href="../tramite/bandeja_recibido.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Recibidos</a></li>
-											</h:outputLabel>                                          	
-                                          	<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_ARCH')}">
-                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Archivados</a></li>
-											</h:outputLabel>
-											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_BANDEJA_SEGUIMIENTO')}">
-                                            	<li><a href="../modulo/item_listado.xhtml"><i class="fa fa-file-archive-o"></i> Bandeja Seguimiento</a></li>
-											</h:outputLabel>
-                                        </ul>
-                                    </li>
-								</h:outputLabel>
-                            </ui:remove>
-                            <ui:remove>
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REG_DOCUMEN_EXT')}">
-	                                <li class="active">
-	                                    <a href="../tramite/documento_externo.xhtml">
-	                                        <span>Documento Externo</span>
-	                                    </a>
-	                                </li>
-								</h:outputLabel>
-								
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REG_DOC_INTER')}">
-	                                <li class="active">
-	                                    <a href="../tramite/documento_interno.xhtml">
-	                                        <span>Documento Interno</span>
-	                                    </a>
-	                                </li>
-								</h:outputLabel>
-								
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_CONSULTA')}">
-	                                <li class="active">
-	                                    <a href="../inicio/home.xhtml">
-	                                        <span> Consulta</span>
-	                                    </a>
-	                                </li>
-								</h:outputLabel>
-						    
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_REPORTE')}">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <span>Reporte</span>
-                                            <i class="topSpace fa fa-angle-left pull-right"></i>
-                                        </a>
-                                        <ul class="treeview-menu">
-								            <h:form styleClass="menu-sub-list-rep">
+                                    <h:outputLabel rendered="#{homeMB.getAcceso('OP_DASBORAD')}">
+                                        <li class="treeview">
+                                            <a href="#">
+                                                <span>#{perfilOpcion.opcion.descripcion}</span>
+                                                <i class="topSpace fa fa-angle-left pull-right"></i>
+                                            </a>
 
-                                        		<li>
-	                                        		 <p:commandButton     value="Servicio" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-								               </li>                       	
+                                            <ul class="treeview-menu">
+                                                <h:form id="frmMenu">
+                                                    <ui:repeat value="#{perfilOpcion.opcion.listaSubOpciones}" var="subOpciones">
 
-                                            	<li>
-                                            		 <p:commandButton     value="Registro" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-									            </li>
+                                                        <li>
 
-                                            	<li>
-                                            		<p:commandButton     value="Consulta" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-                                            	</li>
+                                                            <h:commandLink id="linkOpcion" ajax="false" rel="popover"
+                                                                           action="#{homeMB.irPagina(subOpciones.codigoSubOpcion)}">
+                                                                <i class="fa fa-file-archive-o"></i>
+                                                                <h:outputText value="  #{subOpciones.descripcion}" />
+                                                            </h:commandLink>
+                                                        </li>
 
-                                            	<li>
-                                            		<p:commandButton     value="Descarga" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-                                            	</li>                                          
+                                                    </ui:repeat>
+                                                </h:form>
 
-                                            	<li>
-                                            		<p:commandButton      value="Prestamo" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-                                            	</li>
+                                            </ul>
+                                        </li>
+                                    </h:outputLabel>
 
-                                            	<li>
-                                            		<p:commandButton      value="Acceso" 
-									                                      icon="fa fa-pie-chart" 
-									                                      styleClass="btnlinkMenu" 
-									                                      action="ruta1"
-									                                      ajax="false"/>
-                                            	</li>
 
-                                            </h:form>
-                                        </ul>
-                                    </li>
-								</h:outputLabel>
-								
-								<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION')}">
-                                    <li class="treeview">
-                                        <a href="#">
-                                            <span>Administrador</span>
-                                            <i class="topSpace fa fa-angle-left pull-right"></i>
-                                        </a>
-                                        <ul class="treeview-menu">
-											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_USUARIO')}">
-                                            	<li><a href="../inicio/home.xhtml"><i class="icon-users"></i> Usuario</a></li>
-											</h:outputLabel>
-											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_PERFIL')}">
-                                            	<li><a href="../inicio/home.xhtml"><i class="icon-check"></i> Perfil</a></li>
-											</h:outputLabel>
-											<h:outputLabel rendered="#{seguridadMB.getAcceso('SISINT_ADMINISTRACION_ACCESO')}">
-                                            	<li><a href="../administracion/acceso.xhtml"><i class="icon-link"></i> Acceso</a></li>
-											</h:outputLabel>
-                                        </ul>
-                                    </li>
-								</h:outputLabel>
-                            </ui:remove>
+                                </ui:repeat>
+
                                 <li class="treeview">
                                     <a href="#">
                                         <span>Ayuda</span>
@@ -299,12 +190,12 @@
                                     <ul class="treeview-menu">
                                         <li><a href="../inicio/home.xhtml"><i class="icon-book"></i> Manuales</a></li> 
                                         <li><a href="../inicio/home.xhtml"><i class="icon-info"></i> Acerca de </a></li>
-                                       <!-- <li><a href="../../faces/ayuda/mapa_web.xhtml"><i class="icon-map"></i> Sitio Web</a></li>-->
+
                                     </ul>
                                 </li>
                             </ul>
                         </section>
-                        <!-- /.sidebar -->
+
                     </aside>
                 </div>
             </div>
@@ -343,7 +234,8 @@
         </div>
     </div>
 
-    <!-- CONTENT-WRAPPER SECTION END-->
+
+
     <footer>
     <div class="grisFooter">
         <div class="container">
@@ -370,12 +262,8 @@
         </div>
     </div>
     </footer>
-    <!-- FOOTER SECTION END-->
-    <!-- JAVASCRIPT AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-    <!-- CORE JQUERY SCRIPTS -->
-<!--     <script src="assets/js/jquery-1.11.1.js"></script> -->
-    <!-- BOOTSTRAP SCRIPTS  -->
-<!--     <script src="assets/js/bootstrap.js"></script> -->
+
+
 <h:outputScript name="./js/jquery.jtime.js"/>
 <h:outputScript name="./js/scripts.js"/>
 <script>

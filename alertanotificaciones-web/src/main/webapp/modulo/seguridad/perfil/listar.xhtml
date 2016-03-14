@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+
+    <h:form id="frmLista">
+        <div class="row box-mb">
+            <div class="col-sm-12 box-table-class">
+
+                <p:dataTable id="tblItems"
+                             var="perfil"
+                             value="#{perfilMB.listaPerfiles}"
+                             rowKey="#{perfil.perfilId}"
+                             rowIndexVar="rowIndex"
+                             paginator="true"
+                             paginatorPosition="top"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             rows="10"
+                             style="text-align:center"
+                             emptyMessage="No existen registros">
+
+                    <p:column headerText="Item">
+                        <h:outputText value="#{perfil.perfilId}"/>
+                    </p:column>
+
+                    <p:column headerText="Perfil">
+                        <h:outputText value="#{perfil.nombrePerfil}"/>
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <h:outputText value="#{perfil.descripcionEstado}"/>
+                    </p:column>
+
+                    <p:column headerText="Editar" style="width:80px;text-align:center">
+                        <p:commandButton
+                                title="Modificar"
+                                ajax="false"
+                                icon="ui-icon ui-icon-pencil"
+                                styleClass="colorSuccess"/>
+                    </p:column>
+
+                    <p:column headerText="Eliminar" style="width:80px;text-align:center">
+                        <p:commandButton
+                                icon="ui-icon ui-icon-trash"
+                                title="Eliminar"
+                                ajax="true"
+                                update=":idGrpEliminarConfirmacion"
+                                oncomplete="PF('grpEliminarConfirmacion').show()"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </div>
+        </div>
+
+    </h:form>
+
+
+    <p:confirmDialog message="Aviso de eliminación"
+                     id="idGrpEliminarConfirmacion"
+                     showEffect="fade"
+                     styleClass="modal-confirmation"
+                     modal="true"
+                     hideEffect="explode"
+                     widgetVar="grpEliminarConfirmacion"
+                     width="30%">
+
+
+        <div class="row" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+            <h:outputText value="¿Confirma la eliminación del registro seleccionado:"/>
+            <br/>
+            <h:outputText value="Registro "/>
+            <h:outputText value="Item 01" escape="false" style="font-weight: 600;color:#000"/>
+            <h:outputText value="?"/>
+        </div>
+
+        <div class="row text-right box-dig-btn">
+            <p:commandButton title="Si"
+                             value="Si"
+                             onclick="PF('statusDialog').show()"
+                             oncomplete="PF('grpEliminarConfirmacion').hide(), PF('statusDialog').hide()"
+                             styleClass="btn btn-primary btn-sensitive"
+                             update=":frmLista:tblItems,
+											                 :mensaje"
+                    />
+
+            <p:commandButton title="No"
+                             styleClass="btn btn-default btn-sensitive btn-buscar"
+                             value="No"
+                             oncomplete="PF('grpEliminarConfirmacion').hide()"/>
+        </div>
+
+    </p:confirmDialog>
+
+
+</ui:composition>
+
+</html>

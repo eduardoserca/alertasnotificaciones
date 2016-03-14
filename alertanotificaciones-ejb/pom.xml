@@ -101,6 +101,7 @@
                             <!--clientInclude>/pe/**</clientInclude-->
                             <clientInclude>pe/gob/servir/sistemas/alertanotificaciones/ejb/service/remoto/**</clientInclude>
                             <clientInclude>pe/gob/servir/sistemas/alertanotificaciones/ejb/dao/exception/**</clientInclude>
+                            <clientInclude>pe/gob/servir/sistemas/alertanotificaciones/util/**</clientInclude>
                         </clientIncludes>
                     </configuration>
                 </plugin>

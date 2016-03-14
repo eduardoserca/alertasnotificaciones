@@ -14,11 +14,15 @@ public class Perfil extends BasicObject {
     private static final long serialVersionUID = 1L;
 
     private Long perfilId;
+    private String codigoPerfil;
+    private String nombrePerfil;
     private String descripcion;
     private String estado;
     private Date fechaCreacion;
     private String usuarioCreacion;
     private List<PerfilOpcion> listaPerfilOpcion;
+    private String descripcionEstado;
+
 
     public Long getPerfilId() {
         return perfilId;
@@ -66,5 +70,29 @@ public class Perfil extends BasicObject {
 
     public void setListaPerfilOpcion(List<PerfilOpcion> listaPerfilOpcion) {
         this.listaPerfilOpcion = listaPerfilOpcion;
+    }
+
+    public String getCodigoPerfil() {
+        return codigoPerfil;
+    }
+
+    public void setCodigoPerfil(String codigoPerfil) {
+        this.codigoPerfil = codigoPerfil;
+    }
+
+    public String getDescripcionEstado() {
+        return descripcionEstado;
+    }
+
+    public void setDescripcionEstado(String descripcionEstado) {
+        this.descripcionEstado = descripcionEstado;
+    }
+
+    public String getNombrePerfil() {
+        return nombrePerfil;
+    }
+
+    public void setNombrePerfil(String nombrePerfil) {
+        this.nombrePerfil = nombrePerfil;
     }
 }

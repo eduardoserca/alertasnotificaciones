@@ -65,8 +65,10 @@ public class SubOpcionDaoImpl extends GenericDAOImpl<SubOpcion> implements SubOp
                         subOpcionOut.setSubopcionId(rs.getLong("SUBOPCION_ID"));
                         subOpcionOut.setOpcion(new Opcion());
                         subOpcionOut.getOpcion().setOpcionId(rs.getLong("OPCION_ID"));
+                        subOpcionOut.setCodigoSubOpcion(rs.getString("CODIGO_SUBOPCION"));
                         subOpcionOut.setDescripcion(rs.getString("DESCRIPCION"));
                         subOpcionOut.setEstado(rs.getString("ESTADO"));
+                        subOpcionOut.setUrl(rs.getString("URL"));
                         lista.add(subOpcionOut);
                     }
 

@@ -14,9 +14,11 @@ public class SubOpcion extends BasicObject {
 
     private Long subopcionId;
     private Opcion opcion;
+    private String codigoSubOpcion;
     private String descripcion;
     private String estado;
     private Long orden;
+    private String url;
     private Date fechaCreacion;
     private String usuarioCreacion;
 
@@ -74,5 +76,21 @@ public class SubOpcion extends BasicObject {
 
     public void setUsuarioCreacion(String usuarioCreacion) {
         this.usuarioCreacion = usuarioCreacion;
+    }
+
+    public String getCodigoSubOpcion() {
+        return codigoSubOpcion;
+    }
+
+    public void setCodigoSubOpcion(String codigoSubOpcion) {
+        this.codigoSubOpcion = codigoSubOpcion;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

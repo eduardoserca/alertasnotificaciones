@@ -3,15 +3,14 @@ package pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.inf;
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.base.inf.GenericDAO;
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.exception.PersistenciaException;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Perfil;
-import pe.gob.servir.sistemas.alertanotificaciones.model.domain.PerfilOpcion;
 
 import java.util.List;
 
 /**
- * Created by jarvis on 11/03/2016.
+ * Created by jarvis on 13/03/2016.
  */
-public interface PerfilOpcionDao extends GenericDAO<PerfilOpcion> {
+public interface PerfilDao extends GenericDAO<Perfil> {
 
-    public List<PerfilOpcion> listar(String usuario) throws PersistenciaException;
+    public List<Perfil> obtenerPerfilPorEstado(Perfil perfil) throws PersistenciaException;
 
 }

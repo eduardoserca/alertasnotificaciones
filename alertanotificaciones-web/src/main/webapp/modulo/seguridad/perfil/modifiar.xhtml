@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="../../../template/template.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:pe="http://primefaces.org/ui/extensions"	>
+
+	<ui:define name="title">
+		.:Administracion de Perfiles:.
+	</ui:define>
+
+	<ui:define name="titlePages">
+		<span>Administracion de Perfiles</span>
+	</ui:define>
+
+	<ui:define name="content">
+
+		<div class="row">
+
+			<p:growl id="mensaje" showDetail="true" sticky="false" life="5000" />
+
+			<div class="col-md-12">
+				<fieldset>
+					<h:form id="frmFormulario">
+						<div class="row box-mb">
+							<div class="col-sm-1" >
+								<div class="form-group">
+									<h:outputLabel for="txtPerfil" value="Perfil: " styleClass="control-label"/>
+									<p:inputText id="txtPerfil" value="#{perfilMB.perfil.nombrePerfil}" ></p:inputText>
+								</div>
+							</div>
+						</div>
+
+						<div class="row box-mb">
+							<div class="col-sm-4" >
+								<div class="form-group">
+									<h:outputLabel for="cboEstado" value="Estado: " styleClass="control-label"/>
+									<p:selectOneMenu id="cboEstado" value="#{perfilMB.perfil.estado}" styleClass="form-control style-select">
+										<f:selectItem itemValue="" itemLabel="Todos"/>
+										<f:selectItem itemValue="1" itemLabel="Activo"/>
+										<f:selectItem itemValue="0" itemLabel="Inactivo"/>
+									</p:selectOneMenu>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row box-mb">
+							<div class="col-sm-12 text-right box-main-btn">
+
+								<p:commandButton 	value="Nuevo"
+													styleClass="btn btn-primary btn-sensitive"
+													icon="icon-plus ocultarImgIcon"
+													ajax="true"
+													update=":modalRegistroPerfil"
+													oncomplete="PF('wModalRegistroPerfil').show()"
+													actionListener="#{perfilMB.mostrarRegistrarPerfil}"/>
+
+
+
+								<p:commandButton 	id="idBuscar"
+													value="Buscar"
+													icon="icon-search ocultarImgIcon"
+													styleClass="btn btn-default btn-sensitive btn-buscar"
+													onclick="PF('statusDialog').show()"
+													oncomplete="PF('statusDialog').hide()"
+													ajax="true"
+													update="frmLista:tblItems"
+													actionListener="#{perfilMB.buscarPerfilesPorEstado}"
+										/>
+
+
+
+								<p:commandButton	id="btnLimpiar"
+													styleClass="btn btn-default btn-sensitive btn-buscar"
+													value="Limpiar"
+													icon="icon-limpiar"
+													onclick="PF('statusDialog').show()"
+													oncomplete="PF('statusDialog').hide()"
+													ajax="true"
+													update=":frmFormulario"
+													actionListener="#{perfilMB.limpiar}"
+										/>
+
+							</div>
+						</div>
+					</h:form>
+				</fieldset>
+
+
+				<h:form id="frmLista">
+					<div class="row box-mb">
+						<div class="col-sm-12 box-table-class">
+
+							<p:dataTable    id="tblItems"
+											var="perfil"
+											value="#{perfilMB.listaPerfiles}"
+											rowKey="#{perfil.perfilId}"
+											rowIndexVar="rowIndex"
+											paginator="true"
+											paginatorPosition="top"
+											rowsPerPageTemplate="10,20,30,40,50"
+											rows="10"
+											style="text-align:center"
+											emptyMessage="No existen registros">
+
+								<p:column headerText="Item">
+									<h:outputText value="#{perfil.perfilId}"/>
+								</p:column>
+
+								<p:column headerText="Perfil">
+									<h:outputText value="#{perfil.nombrePerfil}" />
+								</p:column>
+
+								<p:column headerText="Estado">
+									<h:outputText value="#{perfil.descripcionEstado}" />
+								</p:column>
+
+								<p:column headerText="Editar" style="width:80px;text-align:center">
+									<p:commandButton
+											title="Modificar"
+											ajax="false"
+											icon="ui-icon ui-icon-pencil"
+											styleClass="colorSuccess"/>
+								</p:column>
+
+								<p:column headerText="Eliminar" style="width:80px;text-align:center">
+									<p:commandButton
+											icon="ui-icon ui-icon-trash"
+											title="Eliminar"
+											ajax="true"
+											update=":idGrpEliminarConfirmacion"
+											oncomplete="PF('grpEliminarConfirmacion').show()" />
+								</p:column>
+
+							</p:dataTable>
+
+						</div>
+					</div>
+
+				</h:form>
+
+
+			</div>
+
+
+
+			<p:confirmDialog message="Registro de Perfiles"
+							 id="modalRegistroPerfil"
+							 showEffect="fade"
+							 styleClass="modal-confirmation"
+							 modal="true"
+							 hideEffect="explode"
+							 widgetVar="wModalRegistroPerfil"
+							 width="50%">
+
+
+
+				<fieldset>
+					<h:form id="frmFormularioRegistro">
+						<div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+							<div class="col-sm-4" >
+								<div class="form-group">
+									<h:outputLabel for="txtCodigoPerfil" value="Codigo Perfil: " styleClass="control-label"/>
+									<p:inputText id="txtCodigoPerfil" value="#{perfilMB.perfilRegistrar.codigoPerfil}" ></p:inputText>
+								</div>
+							</div>
+						</div>
+
+						<div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+							<div class="col-sm-4" >
+								<div class="form-group">
+									<h:outputLabel for="txtNombrePerfil" value="Perfil: " styleClass="control-label"/>
+									<p:inputText id="txtNombrePerfil" value="#{perfilMB.perfilRegistrar.nombrePerfil}" ></p:inputText>
+								</div>
+							</div>
+						</div>
+
+						<div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+							<div class="col-sm-4" >
+								<div class="form-group">
+									<h:outputLabel for="cboRegistraEstado" value="Estado: " styleClass="control-label"/>
+									<p:selectOneMenu id="cboRegistraEstado" value="#{perfilMB.perfilRegistrar.estado}" styleClass="form-control style-select">
+										<f:selectItem itemValue="" itemLabel="Seleccione"/>
+										<f:selectItem itemValue="1" itemLabel="Activo"/>
+										<f:selectItem itemValue="0" itemLabel="Inactivo"/>
+									</p:selectOneMenu>
+								</div>
+							</div>
+						</div>
+
+						<div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+							<div class="col-sm-4" >
+								<div class="form-group">
+									<h:outputLabel for="txtDescripcionPerfil" value="Descripcion: " styleClass="control-label"/>
+									<p:inputTextarea id="txtDescripcionPerfil" value="#{perfilMB.perfilRegistrar.descripcion}" ></p:inputTextarea>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+							<div class="col-sm-12 text-right box-main-btn">
+
+								<p:commandButton 	value="Grabar"
+													styleClass="btn btn-primary btn-sensitive"
+													icon="icon-plus ocultarImgIcon"
+													ajax="true"
+													update=":modalRegistroPerfil"
+													onclick="PF('statusDialog').show()"
+													oncomplete="PF('statusDialog').hide()"
+													actionListener="#{perfilMB.registrarPerfil}"/>
+
+
+
+								<p:commandButton   id="btnCancelar"
+												   value="Cancelar"
+												   styleClass="btn btn-default btn-sensitive btn-buscar"
+												   oncomplete="PF('wModalRegistroPerfil').hide()"
+												   ajax="true"
+												   actionListener="#{perfilMB.cancelarRegistrarPerfil}"/>
+
+							</div>
+						</div>
+					</h:form>
+				</fieldset>
+
+				<div class="row text-right box-dig-btn"> </div>
+
+			</p:confirmDialog>
+
+
+			<p:confirmDialog message="Aviso de eliminación"
+							 id="idGrpEliminarConfirmacion"
+							 showEffect="fade"
+							 styleClass="modal-confirmation"
+							 modal="true"
+							 hideEffect="explode"
+							 widgetVar="grpEliminarConfirmacion"
+							 width="30%">
+
+
+				<div class="row" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+					<h:outputText value="¿Confirma la eliminación del registro seleccionado:"/>
+					<br/>
+					<h:outputText value="Registro "/>
+					<h:outputText value="Item 01" escape="false" style="font-weight: 600;color:#000"/>
+					<h:outputText value="?"/>
+				</div>
+
+				<div class="row text-right box-dig-btn">
+					<p:commandButton title="Si"
+									 value="Si"
+									 onclick="PF('statusDialog').show()"
+									 oncomplete="PF('grpEliminarConfirmacion').hide(), PF('statusDialog').hide()"
+									 styleClass="btn btn-primary btn-sensitive"
+									 update=":frmLista:tblItems,
+											                 :mensaje"
+							/>
+
+					<p:commandButton title="No"
+									 styleClass="btn btn-default btn-sensitive btn-buscar"
+									 value="No"
+									 oncomplete="PF('grpEliminarConfirmacion').hide()"/>
+				</div>
+
+			</p:confirmDialog>
+
+
+
+
+
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+				<p:graphicImage value="../resources/img/loadingbar.gif" />
+			</p:dialog>
+
+
+		</div>
+
+	</ui:define>
+
+</ui:composition>

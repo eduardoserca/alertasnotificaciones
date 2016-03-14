@@ -1,0 +1,204 @@
+
+<ui:composition template="../../template/template.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="title">
+        .:Listado de Items:.
+    </ui:define>
+    
+    <ui:define name="titlePages">
+        <span>Listado de Items</span>
+    </ui:define>
+    <ui:define name="urlNavegacion">
+      <li class="active">Items</li>
+      <li >Listado de Items </li>
+    </ui:define>
+    
+    <ui:define name="content">
+    
+	    <div class="row">
+	    
+	    	<h:form id="frmItemListado">
+                
+                <p:growl id="mensaje" showDetail="true" sticky="false" life="5000" />
+                <div class="col-md-12">
+                	<fieldset>
+                
+                		<div class="row box-mb">
+			            	<div class="col-sm-4" >
+			                	<div class="form-group">
+			                    	<h:outputLabel for="cmb1" value="Combo 1: " styleClass="control-label"/>                                        
+			                    	<p:selectOneMenu id="cmb1" styleClass="form-control style-select">
+				                        <f:selectItem itemValue="0" itemLabel="Seleccione"/>
+				                        <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+				                        <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+			                        </p:selectOneMenu>
+			                     </div>
+			               </div>
+			               
+			            	<div class="col-sm-4" >
+			                	<div class="form-group">
+			                    	<h:outputLabel for="cmb2" value="Combo 2: " styleClass="control-label"/>                                        
+			                    	<p:selectOneMenu id="cmb2" styleClass="form-control style-select">
+				                        <f:selectItem itemValue="0" itemLabel="Seleccione"/>
+				                        <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+				                        <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+			                        </p:selectOneMenu>
+			                     </div>
+			               </div>
+			               
+			               <div class="col-sm-4" >
+			                	<div class="form-group">
+			                    	<h:outputLabel for="cmb3" value="Combo 3: " styleClass="control-label"/>                                        
+			                    	<p:selectOneMenu id="cmb3" styleClass="form-control style-select">
+				                        <f:selectItem itemValue="0" itemLabel="Seleccione"/>
+				                        <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+				                        <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+			                        </p:selectOneMenu>
+			                     </div>
+			               </div>
+			               
+                		</div>
+                		
+                		<div class="row box-mb">
+                                <div class="col-sm-12 text-right box-main-btn">
+                                    <p:commandButton 	value="Nuevo" 
+                                    					styleClass="btn btn-primary btn-sensitive" 
+                                    					icon="icon-plus ocultarImgIcon" 
+                                    					ajax="false"/>
+
+                                    <p:commandButton 	id="idBuscar"
+                                    					value="Buscar" 
+                                    					icon="icon-search ocultarImgIcon" 
+                                    					styleClass="btn btn-default btn-sensitive btn-buscar" 
+                                    					onclick="PF('statusDialog').show()"
+                                    					oncomplete="PF('statusDialog').hide()"  
+                                    					ajax="true"
+                                    					update="tblItems"
+                                    					/>
+                                    					
+                                   	<p:commandButton	id="btnLimpiar"
+					                                    styleClass="btn btn-default btn-sensitive btn-buscar"   
+					                                    value="Limpiar"
+					                                    icon="icon-limpiar"
+					                                    update="tblItems,cmb1,cmb2,
+					                                        	cmb3"
+					                                    />
+                                    					
+                                </div>
+                         </div>
+                	
+                	
+                		 <div class="row box-mb">
+                         	<div class="col-sm-12 box-table-class">
+                                               
+                            	<p:dataTable    id="tblItems" 
+                                                var="archivo" 
+                                                value="" 
+                                                rowKey="#{item.id}" 
+                                                paginator="true"
+                                                paginatorPosition="top"
+                                                rowsPerPageTemplate="10,20,30,40,50"
+                                                rowIndexVar="item"
+                                                rows="10"
+                                                style="text-align:center"
+                                                emptyMessage="No existen registros">
+
+												<p:column headerText="Columna 1">
+                                                	<h:outputText value="Item 01"/>
+                                                </p:column>
+
+                								<p:column headerText="Columna 2">
+                                                	<h:outputText value="Item 01" />
+                                                </p:column>
+
+                                                <p:column headerText="Columna 3">
+                                                	<h:outputText value="Item 01" />
+                                                </p:column>
+
+                								<p:column headerText="Columna 4">
+                                                	<h:outputText value="Item 01" />
+                                                </p:column>
+                                                                    
+                                                <p:column headerText="Columna 5"> 
+                                                	<h:outputText value="Item 01" />
+                                                </p:column>
+                                                                                                      
+			                                    <p:column headerText="Accion" style="width:80px;text-align:center">
+														
+														                                     
+							                        <p:commandButton 	
+							                        					title="Modificar"
+							                            				ajax="false"
+								                            			icon="ui-icon ui-icon-pencil"
+							                            				styleClass="colorSuccess"/>   
+							                            				                         				 
+							                        <p:commandButton 
+																		icon="ui-icon ui-icon-trash" 
+																		title="Eliminar"
+																		ajax="true"
+																		update=":frmItemListado:idGrpEliminarConfirmacion"
+																		oncomplete="PF('grpEliminarConfirmacion').show()" />
+							                            				 
+			                                    </p:column>
+
+                          			</p:dataTable>
+
+                            </div>
+                      	 </div>
+                		
+                		
+                	</fieldset>
+                </div>
+                
+                <p:confirmDialog message="Aviso de eliminación"
+								 id="idGrpEliminarConfirmacion" 
+						         showEffect="fade"
+                                 styleClass="modal-confirmation"						                 
+						         modal="true"
+						         hideEffect="explode" 
+						         widgetVar="grpEliminarConfirmacion"
+						         width="30%">
+						                  
+
+                                 <div class="row" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">             
+                                 	<h:outputText value="¿Confirma la eliminación del registro seleccionado:"/>
+                                    <br/>
+                                    <h:outputText value="Registro "/> 
+                                    <h:outputText value="Item 01" escape="false" style="font-weight: 600;color:#000"/>
+                                    <h:outputText value="?"/>
+                                 </div>
+
+								 <div class="row text-right box-dig-btn">            
+								 	<p:commandButton title="Si" 
+											         value="Si" 
+											         onclick="PF('statusDialog').show()"
+											         oncomplete="PF('grpEliminarConfirmacion').hide(), PF('statusDialog').hide()" 
+                                                     styleClass="btn btn-primary btn-sensitive" 
+											         update=":frmItemListado:tblItems,
+											                 :frmItemListado:mensaje"
+											         /> 
+											                         
+									<p:commandButton title="No" 
+                                                     styleClass="btn btn-default btn-sensitive btn-buscar"
+											         value="No" 
+											         oncomplete="PF('grpEliminarConfirmacion').hide()"/>
+								 </div>                
+								
+				</p:confirmDialog>
+                    
+                <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+		    		<p:graphicImage value="../resources/img/loadingbar.gif" />
+				</p:dialog>    
+                    
+            </h:form>   
+	    
+	    </div>
+    
+    </ui:define>
+    
+</ui:composition>
