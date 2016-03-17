@@ -62,7 +62,7 @@ public class UsuarioDaoImpl extends GenericDAOImpl<Usuario> implements UsuarioDa
 
                     String mensaje = cstm.getString("v_mensaje");
                     System.out.println("CESC 9 " + mensaje);
-                    if(null != mensaje && mensaje.trim().length() > 0 ){
+                    if(null != mensaje && !"[OK]".equals(mensaje) ){
                         throw new SQLException(mensaje);
                     }
 
