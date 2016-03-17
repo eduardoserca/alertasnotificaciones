@@ -69,8 +69,16 @@
             <from-outcome>OP_REPORTES_SO_DECLARACION_JURADA</from-outcome>
             <to-view-id>/modulo/reportes/declaracion-jurada.xhtml</to-view-id>
         </navigation-case>
+    </navigation-rule>
 
 
+    <navigation-rule>
+        <from-view-id>/modulo/control-tareas/declaracion-jurada/declaracion-jurada.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>verRegistrarDeclaracionJurada</from-outcome>
+            <to-view-id>/modulo/control-tareas/declaracion-jurada/registrar.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>

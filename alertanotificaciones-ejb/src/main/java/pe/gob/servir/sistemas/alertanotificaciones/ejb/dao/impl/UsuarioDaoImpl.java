@@ -45,9 +45,12 @@ public class UsuarioDaoImpl extends GenericDAOImpl<Usuario> implements UsuarioDa
                 CallableStatement cstm = null;
 
                 try{
-                    connection.setAutoCommit(false);
+                    //connection.setAutoCommit(false);
                     cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+ ".ALERTAS_NOTIFICACIONES_PKG.AUTENTIFICACION ( ?, ?, ?, ? ) }");
                     System.out.println("CESC 7 cstm: " + cstm);
+
+                    System.out.println("getUsuario: " + usuario.getUsuario());
+                    System.out.println("getClave: "+usuario.getClave());
 
                     cstm.setString("v_usuario", usuario.getUsuario());
                     cstm.setString("v_clave", usuario.getClave());

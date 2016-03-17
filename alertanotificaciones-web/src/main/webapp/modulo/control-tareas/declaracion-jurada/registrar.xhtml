@@ -1,0 +1,272 @@
+<ui:composition template="../../../template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:#{msgs['etiqueta.declaracion.jurada.registro.titulo']}:.
+    </ui:define>
+
+    <ui:define name="titlePages">
+        <span>#{msgs['etiqueta.declaracion.jurada.registro.titulo']}</span>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="frmFormulario" styleClass="form-horizontal">
+
+            <div class="row">
+
+                <p:growl id="mensaje" showDetail="true" sticky="false" life="5000"/>
+
+                <div class="col-md-12">
+                    <fieldset>
+                        <legend>#{msgs['etiqueta.informacion.general']}</legend>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+
+                                <h:outputLabel for="cboSupervisor" value="#{msgs['etiqueta.supervisor']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboSupervisor" value="#{declaracionJuradaMB.parametros.valor}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <h:outputLabel for="cboResponsable"
+                                               value="#{msgs['etiqueta.responsable']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboResponsable" value="#{declaracionJuradaMB.parametros.valor}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtCargo" value="#{msgs['etiqueta.cargo.funcion']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtCargo" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtFechaAsumpsion" value="#{msgs['etiqueta.fecha.asumosion']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtFechaAsumpsion" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="cboTipo"
+                                               value="#{msgs['etiqueta.tipo']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboTipo" value="#{declaracionJuradaMB.parametros.valor}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtFechaReferencia" value="#{msgs['etiqueta.fecha.referencia']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtFechaReferencia" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtFechaVencimiento" value="#{msgs['etiqueta.fecha.vencimiento']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtFechaVencimiento" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtFechaPublicacion" value="#{msgs['etiqueta.fecha.publicacion']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtFechaPublicacion" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+                        <div class="row box-mb">
+                            <div class="col-sm-12">
+                                <h:outputLabel for="txtComentario" value="#{msgs['etiqueta.fecha.documento']}:"
+                                               styleClass="control-label"/>
+                                <p:inputTextarea id="txtComentario" value="#{declaracionJuradaMB.parametros.valor}"
+                                                 styleClass="form-control"></p:inputTextarea>
+                            </div>
+                        </div>
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtfechaDocumento" value="#{msgs['etiqueta.fecha.documento']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtfechaDocumento" value="#{declaracionJuradaMB.parametros.valor}" styleClass="form-control"></p:inputText>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtNumeroDocumento" value="#{msgs['etiqueta.numero.documento']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtNumeroDocumento" value="#{declaracionJuradaMB.parametros.valor}" styleClass="form-control"></p:inputText>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+                    <br/>
+                    <fieldset>
+                        <legend>#{msgs['etiqueta.notificar.usuarios']}</legend>
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtDNI" value="#{msgs['etiqueta.dni']}:"
+                                               styleClass="control-label"/>
+
+                                <div class="input-group">
+                                    <p:inputText id="txtDNI"
+                                                 value="#{declaracionJuradaMB.parametros.valor}"
+                                                 styleClass="form-control"></p:inputText>
+                                              <span class="input-group-btn">
+                                                  <p:commandButton value="..."
+                                                                   styleClass="btn btn-secondary"
+                                                                   ajax="true"
+                                                                   onclick="PF('statusDialog').show()"
+                                                                   oncomplete="PF('statusDialog').hide()"
+                                                                   actionListener="#{cartaFianzaMB.buscarUsuario}"/>
+                                              </span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtApellidoPaterno"
+                                               value="#{msgs['etiqueta.apellido.paterno']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtApellidoPaterno" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtApellidoMaterno"
+                                               value="#{msgs['etiqueta.apellido.materno']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtApellidoMaterno" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtNombre"
+                                               value="#{msgs['etiqueta.apellido.nombre']}:"
+                                               styleClass="control-label"/>
+                                <p:inputText id="txtNombre"
+                                             value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtCreadencial"
+                                               value="#{msgs['etiqueta.credencial']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtCreadencial" value="#{declaracionJuradaMB.parametros.valor}"
+                                             styleClass="form-control"></p:inputText>
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-12  text-right box-main-btn">
+                                <p:commandButton id="btnAgregar"
+                                                 value="#{msgs['boton.etiqueta.agregar']}"
+                                                 styleClass="btn btn-primary btn-sensitive"
+                                                 icon="icon-plus ocultarImgIcon"
+                                                 ajax="true"
+                                                 onclick="PF('statusDialog').show()"
+                                                 oncomplete="PF('statusDialog').hide()"
+                                                 actionListener="#{cartaFianzaMB.agregarUsuario}"/>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-12 box-table-class">
+
+                                <p:dataTable id="tblUsuarios"
+                                             var="usuario"
+                                             value="#{cartaFianzaMB.listaUsuario}"
+                                             rowKey="#{usuario.usuarioId}"
+                                             rowIndexVar="rowIndex"
+                                             rows="10"
+                                             style="text-align:center"
+                                             emptyMessage="No existen registros">
+
+                                    <p:column headerText="#{msgs['tabla.etiqueta.item']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+
+                                    <p:column headerText="#{msgs['tabla.etiqueta.documento.identidad']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['tabla.etiqueta.apellido.paterno']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['tabla.etiqueta.apellido.materno']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['tabla.etiqueta.apellido.nmbres']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+                                    <p:column headerText="#{msgs['tabla.etiqueta.apellido.credencial']}">
+                                        <h:outputText value="valor"/>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+
+
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
