@@ -5,8 +5,11 @@ package pe.gob.servir.sistemas.alertanotificaciones.util;
  */
 public class Constantes {
 
-    public final static String ESTADO_ACTIVO = "1";
-    public final static String ESTADO_INACTIVO = "0";
+
+    public final static String BD_ESQUEMA = "ALERTAS";
+
+    public final static String ESTADO_ACTIVO = "A";
+    public final static String ESTADO_INACTIVO = "I";
     public final static String ESTADO_ACTIVO_DESCRIPCION = "Activo";
     public final static String ESTADO_INACTIVO_DESCRIPCION = "Inactivo";
 

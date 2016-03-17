@@ -9,6 +9,7 @@ import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.inf.PerfilOpcionDao;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Opcion;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Perfil;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.PerfilOpcion;
+import pe.gob.servir.sistemas.alertanotificaciones.util.Constantes;
 import pe.gob.servir.systems.util.retorno.ReturnObject;
 import pe.gob.servir.systems.util.sql.Conexion;
 
@@ -69,7 +70,7 @@ public class PerfilOpcionDaoImpl  extends GenericDAOImpl<PerfilOpcion> implement
 
                 try{
                     connection.setAutoCommit(false);
-                    cstm = connection.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.GET_PERFIL_OPCION ( ?, ?, ? ) }");
+                    cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+ ".ALERTAS_NOTIFICACIONES_PKG.GET_PERFIL_OPCION ( ?, ?, ? ) }");
 
                     cstm.setString("v_usuario", usuario);
                     cstm.registerOutParameter("cur_perfil_op", OracleTypes.CURSOR);

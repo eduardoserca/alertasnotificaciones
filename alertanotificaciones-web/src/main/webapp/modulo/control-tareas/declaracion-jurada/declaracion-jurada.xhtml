@@ -1,5 +1,5 @@
 
-<ui:composition template="../../template/template.xhtml"
+<ui:composition template="../../../template/template.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
@@ -29,18 +29,18 @@
                 	<fieldset>
                 
                 		<div class="row box-mb">
-			            	<div class="col-sm-4" >
+			            	<div class="col-sm-6" >
 			                	<div class="form-group">
 			                    	<h:outputLabel for="cmb1" value="Combo 1: " styleClass="control-label"/>                                        
 			                    	<p:selectOneMenu id="cmb1" styleClass="form-control style-select">
-				                        <f:selectItem itemValue="0" itemLabel="Seleccione"/>
+				                        <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
 				                        <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
 				                        <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
 			                        </p:selectOneMenu>
 			                     </div>
 			               </div>
 			               
-			            	<div class="col-sm-4" >
+			            	<div class="col-sm-6" >
 			                	<div class="form-group">
 			                    	<h:outputLabel for="cmb2" value="Combo 2: " styleClass="control-label"/>                                        
 			                    	<p:selectOneMenu id="cmb2" styleClass="form-control style-select">

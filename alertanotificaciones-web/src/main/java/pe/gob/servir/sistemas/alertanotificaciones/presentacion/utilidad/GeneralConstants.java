@@ -26,4 +26,10 @@ public class GeneralConstants implements Serializable {
     public static final String CHARACTER_TRUNCATE_STRING = ".....";
     public static final String DATE_PATTERN = "dd/MM/yyyy";
     public static final String TIMESTAMP_PATTERN = "dd/MM/yyyy HH:mm:ss.SSS";
+
+
+    public static final String TABLA_ESTADOS = "TBL_ESTADO";
+    public static final String ESTADO_ELIMINADO = "E";
+
+
 }

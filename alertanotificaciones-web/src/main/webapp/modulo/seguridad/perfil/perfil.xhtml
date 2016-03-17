@@ -37,10 +37,13 @@
                                     <h:outputLabel for="cboEstado" value="Estado: " styleClass="control-label"/>
                                     <p:selectOneMenu id="cboEstado" value="#{perfilMB.perfil.estado}"
                                                      styleClass="form-control style-select">
-                                        <f:selectItem itemValue="" itemLabel="Todos"/>
-                                        <f:selectItem itemValue="1" itemLabel="Activo"/>
-                                        <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+                                        <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                        <f:selectItems value="#{perfilMB.listaEstados}"
+                                                       var="estado"
+                                                       itemLabel="#{estado.etiqueta}" itemValue="#{estado.valor}"/>
+
                                     </p:selectOneMenu>
+
                                 </div>
                             </div>
                         </div>
@@ -49,7 +52,8 @@
                         <div class="row box-mb">
                             <div class="col-sm-12 text-right box-main-btn">
 
-                                <p:commandButton value="Nuevo"
+                                <p:commandButton id="btnNuevo"
+                                                 value="Nuevo"
                                                  styleClass="btn btn-primary btn-sensitive"
                                                  icon="icon-plus ocultarImgIcon"
                                                  ajax="true"

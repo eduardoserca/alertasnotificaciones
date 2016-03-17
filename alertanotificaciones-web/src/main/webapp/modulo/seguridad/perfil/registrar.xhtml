@@ -50,13 +50,17 @@
                 <div class="row box-mb" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
                     <div class="col-sm-4">
                         <div class="form-group">
+
                             <h:outputLabel for="cboRegistraEstado" value="Estado: " styleClass="control-label"/>
                             <p:selectOneMenu id="cboRegistraEstado" value="#{perfilMB.perfilRegistrar.estado}"
                                              styleClass="form-control style-select">
-                                <f:selectItem itemValue="" itemLabel="Seleccione"/>
-                                <f:selectItem itemValue="1" itemLabel="Activo"/>
-                                <f:selectItem itemValue="0" itemLabel="Inactivo"/>
+                                <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                <f:selectItems value="#{perfilMB.listaEstados}"
+                                               var="estado"
+                                               itemLabel="#{estado.etiqueta}" itemValue="#{estado.valor}"/>
+
                             </p:selectOneMenu>
+
                         </div>
                     </div>
                 </div>

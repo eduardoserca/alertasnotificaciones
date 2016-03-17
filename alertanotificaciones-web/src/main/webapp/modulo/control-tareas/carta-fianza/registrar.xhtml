@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+
+<ui:composition>
+
+    <h:panelGroup id="pnlDialogo">
+        <h:form id="frmFormularioRegistro">
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                 data-keyboard="false" data-backdrop="static">
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">#{msgs['etiqueta.registro.carta.fianza']}</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <fieldset>
+                                <legend>#{msgs['etiqueta.informacion.general']}</legend>
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="cboTipo" value="#{msgs['etiqueta.tipo']}:"
+                                                           styleClass="control-label"/>
+                                            <p:selectOneMenu id="cboTipo"
+                                                             value="#{cartaFianzaMB.cartaFianzaRegistrar.tipo}"
+                                                             styleClass="form-control style-select">
+                                                <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                                <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                                <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                            </p:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtNumeroDocumento"
+                                                           value="#{msgs['etiqueta.numero.documento']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtNumeroDocumento"
+                                                         value="#{cartaFianzaMB.cartaFianza.numeroDocumento}"
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtNumeroContrato"
+                                                           value="#{msgs['etiqueta.numero.contrato']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtNumeroContrato"
+                                                         value="#{cartaFianzaMB.cartaFianzaRegistrar.numeroContrato}"
+                                                         styleClass="form-control"></p:inputText>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtBancoEmisor"
+                                                           value="#{msgs['etiqueta.banco.emisor']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtBancoEmisor" value=""
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtProveedor" value="#{msgs['etiqueta.proveedor']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtProveedor" value=""
+                                                         styleClass="form-control"></p:inputText>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtNumeroProcesoSeleccion"
+                                                           value="#{msgs['etiqueta.numero.proceso.seleccion']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtNumeroProcesoSeleccion" value=""
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtImporte" value="#{msgs['etiqueta.importe']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtImporte" value=""
+                                                         styleClass="form-control"></p:inputText>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtFechaVencimiento"
+                                                           value="#{msgs['etiqueta.fecha.vencimiento']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtFechaVencimiento" value=""
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtSupervisor" value="#{msgs['etiqueta.supervisor']}:"
+                                                           styleClass="control-label"/>
+
+                                            <div class="input-group">
+                                                <p:inputText id="txtSupervisor"
+                                                             value="#{cartaFianzaMB.cartaFianzaRegistrar.supervisor.supervisorId}"
+                                                             styleClass="form-control"></p:inputText>
+                                              <span class="input-group-btn">
+                                                  <p:commandButton value="..."
+                                                                   styleClass="btn btn-secondary"
+                                                                   ajax="true"
+                                                                   onclick="PF('statusDialog').show()"
+                                                                   oncomplete="PF('statusDialog').hide()"
+                                                                   actionListener="#{cartaFianzaMB.buscarSupervisor}"/>
+                                              </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtResponsable" value="#{msgs['etiqueta.responsable']}"
+                                                           styleClass="control-label"/>
+
+                                            <div class="input-group">
+                                                <p:inputText id="txtResponsable"
+                                                             value="#{cartaFianzaMB.cartaFianzaRegistrar.responsable.responsableId}"
+                                                             styleClass="form-control"></p:inputText>
+                                              <span class="input-group-btn">
+                                                  <p:commandButton value="..."
+                                                                   styleClass="btn btn-secondary"
+                                                                   ajax="true"
+                                                                   onclick="PF('statusDialog').show()"
+                                                                   oncomplete="PF('statusDialog').hide()"
+                                                                   actionListener="#{cartaFianzaMB.buscarResponsable}"/>
+                                              </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtComentario" value="#{msgs['etiqueta.comentario']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputTextarea id="txtComentario"
+                                                             value="#{cartaFianzaMB.cartaFianzaRegistrar.comentario}"
+                                                             styleClass="form-control"></p:inputTextarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <legend>#{msgs['etiqueta.notificar.usuarios']}</legend>
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtDNI" value="#{msgs['etiqueta.dni']}:"
+                                                           styleClass="control-label"/>
+
+                                            <div class="input-group">
+                                                <p:inputText id="txtDNI"
+                                                             value=""
+                                                             styleClass="form-control"></p:inputText>
+                                              <span class="input-group-btn">
+                                                  <p:commandButton value="..."
+                                                                   styleClass="btn btn-secondary"
+                                                                   ajax="true"
+                                                                   onclick="PF('statusDialog').show()"
+                                                                   oncomplete="PF('statusDialog').hide()"
+                                                                   actionListener="#{cartaFianzaMB.buscarUsuario}"/>
+                                              </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtApellidoPaterno"
+                                                           value="#{msgs['etiqueta.apellido.paterno']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtApellidoPaterno" value=""
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtApellidoMaterno"
+                                                           value="#{msgs['etiqueta.apellido.materno']}:"
+                                                           styleClass="control-label"/>
+
+                                            <p:inputText id="txtApellidoMaterno" value=""
+                                                         styleClass="form-control"></p:inputText>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtNombre"
+                                                           value="#{msgs['etiqueta.apellido.nombre']}:"
+                                                           styleClass="control-label"/>
+                                            <p:inputText id="txtNombre"
+                                                         value=""
+                                                         styleClass="form-control"></p:inputText>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <h:outputLabel for="txtCreadencial"
+                                                           value="#{msgs['etiqueta.credencial']}:"
+                                                           styleClass="control-label"/>
+
+                                            <p:inputText id="txtCreadencial" value=""
+                                                         styleClass="form-control"></p:inputText>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-12  text-right box-main-btn">
+                                        <p:commandButton id="btnAgregar"
+                                                         value="#{msgs['boton.etiqueta.agregar']}"
+                                                         styleClass="btn btn-primary btn-sensitive"
+                                                         icon="icon-plus ocultarImgIcon"
+                                                         ajax="true"
+                                                         onclick="PF('statusDialog').show()"
+                                                         oncomplete="PF('statusDialog').hide()"
+                                                         actionListener="#{cartaFianzaMB.agregarUsuario}"/>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row box-mb"
+                                     style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px; margin-right: 15px;">
+                                    <div class="col-sm-12">
+
+                                        <p:dataTable id="tblUsuarios"
+                                                     var="usuario"
+                                                     value="#{cartaFianzaMB.listaUsuario}"
+                                                     rowKey="#{usuario.usuarioId}"
+                                                     rowIndexVar="rowIndex"
+                                                     rows="10"
+                                                     style="text-align:center"
+                                                     emptyMessage="No existen registros">
+
+                                            <p:column headerText="#{msgs['tabla.etiqueta.item']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+
+                                            <p:column headerText="#{msgs['tabla.etiqueta.documento.identidad']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+                                            <p:column headerText="#{msgs['tabla.etiqueta.apellido.paterno']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+                                            <p:column headerText="#{msgs['tabla.etiqueta.apellido.materno']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+                                            <p:column headerText="#{msgs['tabla.etiqueta.apellido.nmbres']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+                                            <p:column headerText="#{msgs['tabla.etiqueta.apellido.credencial']}">
+                                                <h:outputText value=""/>
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                        </div>
+                        <div class="modal-footer">
+
+                            <p:commandButton id="btnGrabrar"
+                                             value="#{msgs['boton.etiqueta.grabar']}"
+                                             styleClass="btn btn-primary btn-sensitive"
+                                             icon="icon-plus ocultarImgIcon"
+                                             ajax="true"
+                                             oncomplete="$('#myModal').modal('hide');"
+                                             actionListener="#{cartaFianzaMB.registrarCartaFianza}"/>
+
+                            <p:commandButton id="btnCancelar"
+                                             value="Cancelar"
+                                             styleClass="btn btn-default btn-sensitive btn-buscar"
+                                             oncomplete="$('#myModal').modal('hide');"
+                                             ajax="true"
+                                             actionListener="#{cartaFianzaMB.cancelarRegistro}"/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+    </h:panelGroup>
+
+
+    <p:confirmDialog id="cnfEndTransaction"
+                     message="Registro Satisfactorio"
+                     closable="false"
+                     showEffect="fade"
+                     styleClass="modal-confirmation"
+                     modal="true"
+                     hideEffect="explode"
+                     widgetVar="cnfwEndTransaction"
+                     width="30%">
+
+
+        <div class="row" style="margin-left: 15px;margin-top: 5px;margin-bottom: 10px;">
+
+            <p:outputLabel value="Perfil registrado satisfactoriamente."/>
+
+            <h:panelGrid width="100%" border="0" id="idPnlGridEndTransaction"
+                         cellpadding="2" cellspacing="2" style="text-align:center;">
+
+                <p:commandButton id="cmbConfirmTransactionOk"
+                                 value="#{msgs['boton.etiqueta.aceptar']}"
+                                 styleClass="btn btn-default btn-sensitive btn-buscar"
+                                 oncomplete="PF('cnfwEndTransaction').hide()"/>
+
+
+            </h:panelGrid>
+
+        </div>
+
+        <div class="row text-right box-dig-btn"></div>
+
+    </p:confirmDialog>
+
+
+    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
+              showHeader="false">
+        <p:graphicImage value="../resources/img/loadingbar.gif"/>
+    </p:dialog>
+
+
+</ui:composition>
+</html>

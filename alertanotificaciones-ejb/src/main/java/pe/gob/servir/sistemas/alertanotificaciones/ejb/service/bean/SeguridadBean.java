@@ -30,5 +30,10 @@ public class SeguridadBean implements SeguridadRemoto {
         return perfilDao.insertar(perfil);
     }
 
+    @Override
+    public Boolean eliminarPerfil(Perfil perfil) throws PersistenciaException {
+        return perfilDao.eliminar(perfil);
+    }
+
 
 }

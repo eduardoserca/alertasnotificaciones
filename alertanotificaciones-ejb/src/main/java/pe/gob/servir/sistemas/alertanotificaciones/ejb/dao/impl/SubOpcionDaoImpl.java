@@ -8,6 +8,7 @@ import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.exception.Persistenci
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.inf.SubOpcionDao;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Opcion;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.SubOpcion;
+import pe.gob.servir.sistemas.alertanotificaciones.util.Constantes;
 import pe.gob.servir.systems.util.retorno.ReturnObject;
 import pe.gob.servir.systems.util.sql.Conexion;
 
@@ -44,7 +45,7 @@ public class SubOpcionDaoImpl extends GenericDAOImpl<SubOpcion> implements SubOp
 
                 try{
                     connection.setAutoCommit(false);
-                    cstm = connection.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.GET_SUBOPCIONES ( ?, ?, ? ) }");
+                    cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+ ".ALERTAS_NOTIFICACIONES_PKG.GET_SUBOPCIONES ( ?, ?, ? ) }");
 
                     cstm.setLong("vn_opcion_id", subOpcion.getOpcion().getOpcionId());
                     cstm.registerOutParameter("cur_sub_opciones", OracleTypes.CURSOR);
@@ -68,11 +69,8 @@ public class SubOpcionDaoImpl extends GenericDAOImpl<SubOpcion> implements SubOp
                         subOpcionOut.setCodigoSubOpcion(rs.getString("CODIGO_SUBOPCION"));
                         subOpcionOut.setDescripcion(rs.getString("DESCRIPCION"));
                         subOpcionOut.setEstado(rs.getString("ESTADO"));
-                        subOpcionOut.setUrl(rs.getString("URL"));
                         lista.add(subOpcionOut);
                     }
-
-
 
                 }catch (SQLException e){
                     System.out.println(e);

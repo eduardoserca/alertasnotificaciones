@@ -1,10 +1,13 @@
 package pe.gob.servir.sistemas.alertanotificaciones.presentacion.mbean;
 
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.exception.PersistenciaException;
+import pe.gob.servir.sistemas.alertanotificaciones.ejb.service.remoto.ParametrosRemoto;
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.service.remoto.SeguridadRemoto;
+import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Parametros;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Perfil;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Usuario;
 import pe.gob.servir.sistemas.alertanotificaciones.presentacion.base.BasicMB;
+import pe.gob.servir.sistemas.alertanotificaciones.presentacion.utilidad.GeneralConstants;
 import pe.gob.servir.sistemas.alertanotificaciones.presentacion.utilidad.JSFUtilidades;
 import pe.gob.servir.sistemas.alertanotificaciones.presentacion.utilidad.PropiedadesUtilidades;
 import pe.gob.servir.systems.util.retorno.ReturnObject;
@@ -27,16 +30,43 @@ public class PerfilMB extends BasicMB {
     @EJB(lookup = "java:global/alertanotificaciones-ear/alertanotificaciones-ejb-1.0/SeguridadBean!pe.gob.servir.sistemas.alertanotificaciones.ejb.service.remoto.SeguridadRemoto")
     private SeguridadRemoto seguridadRemoto;
 
+    @EJB(lookup = "java:global/alertanotificaciones-ear/alertanotificaciones-ejb-1.0/ParametrosBean!pe.gob.servir.sistemas.alertanotificaciones.ejb.service.remoto.ParametrosRemoto")
+    private ParametrosRemoto parametrosRemoto;
+
+
     private Perfil perfil;
     private Usuario usuario;
     private Perfil perfilRegistrar;
     private List<Perfil> listaPerfiles;
+    private List<Parametros> listaEstados;
 
     @PostConstruct
     private void iniciar(){
         perfil = new Perfil();
         perfilRegistrar = new Perfil();
         usuario = (Usuario)obtenerSesion();
+        listaEstados = iniciarEstados();
+    }
+
+
+    private List<Parametros> iniciarEstados(){
+        List<Parametros> lista = null;
+        try {
+
+            lista = parametrosRemoto.obtenerParametrosPorCodigoTabla(GeneralConstants.TABLA_ESTADOS);
+
+            for (Parametros parametros : lista ){
+                if(GeneralConstants.ESTADO_ELIMINADO.equals(parametros.getValor())){
+                    lista.remove(parametros);
+                    break;
+                }
+            }
+
+        } catch (PersistenciaException e) {
+            System.out.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return lista;
     }
 
 
@@ -119,5 +149,13 @@ public class PerfilMB extends BasicMB {
 
     public void setPerfilRegistrar(Perfil perfilRegistrar) {
         this.perfilRegistrar = perfilRegistrar;
+    }
+
+    public List<Parametros> getListaEstados() {
+        return listaEstados;
+    }
+
+    public void setListaEstados(List<Parametros> listaEstados) {
+        this.listaEstados = listaEstados;
     }
 }

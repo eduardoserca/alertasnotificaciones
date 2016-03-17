@@ -1,0 +1,174 @@
+<ui:composition template="../../../template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="title">
+        .:#{msgs['etiqueta.carta.fianza.principal.titulo']}:.
+    </ui:define>
+
+    <ui:define name="titlePages">
+        <span>#{msgs['etiqueta.carta.fianza.principal.titulo']}</span>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <div class="row">
+
+            <p:growl id="mensaje" showDetail="true" sticky="false" life="5000"/>
+
+            <div class="col-md-12">
+                <fieldset>
+                    <h:form id="frmFormulario" styleClass="form-horizontal">
+
+                        <div class="row box-mb">
+                            <div class="col-sm-6">
+
+                                <h:outputLabel for="cboTipo" value="#{msgs['etiqueta.tipo']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboTipo" value="#{cartaFianzaMB.cartaFianza.tipo}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+
+
+                            </div>
+                            <div class="col-sm-6">
+
+                                <h:outputLabel for="txtNumeroDocumento"
+                                               value="#{msgs['etiqueta.numero.documento']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtNumeroDocumento"
+                                             value="#{cartaFianzaMB.cartaFianza.numeroDocumento}"
+                                             styleClass="form-control"></p:inputText>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row box-mb">
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="cboEstado" value="#{msgs['etiqueta.estado']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboEstado" value="#{cartaFianzaMB.cartaFianza.estado}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="txtNumeroContrato" value="#{msgs['etiqueta.numero.contrato']}:"
+                                               styleClass="control-label"/>
+
+                                <p:inputText id="txtNumeroContrato"
+                                             value="#{cartaFianzaMB.cartaFianza.numeroContrato}"
+                                             styleClass="form-control"></p:inputText>
+
+                            </div>
+                        </div>
+
+                        <div class="row box-mb">
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="cboSupervisor" value="#{msgs['etiqueta.supervisor']}:"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboSupervisor"
+                                                 value="#{cartaFianzaMB.cartaFianza.supervisor.supervisorId}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <h:outputLabel for="cboResponsable" value="#{msgs['etiqueta.responsable']}"
+                                               styleClass="control-label"/>
+
+                                <p:selectOneMenu id="cboResponsable"
+                                                 value="#{cartaFianzaMB.cartaFianza.responsable.responsableId}"
+                                                 styleClass="form-control style-select">
+                                    <f:selectItem itemValue="" itemLabel="#{msgs['etiqueta.combo.todos']}"/>
+                                    <f:selectItem itemValue="1" itemLabel="Elemento 1"/>
+                                    <f:selectItem itemValue="2" itemLabel="Elemento 2"/>
+                                </p:selectOneMenu>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row box-mb">
+                            <div class="col-sm-12 text-right box-main-btn">
+
+                                <p:commandButton id="btnNuevo"
+                                                 value="#{msgs['boton.etiqueta.nuevo']}"
+                                                 styleClass="btn btn-primary btn-sensitive"
+                                                 icon="icon-plus ocultarImgIcon"
+                                                 ajax="true"
+                                                 update=":pnlDialogo"
+                                                 oncomplete="$('#myModal').modal('show');"
+                                                 actionListener="#{cartaFianzaMB.verRegistrarCartaFianza}"/>
+
+
+                                <p:commandButton id="idBuscar"
+                                                 value="#{msgs['boton.etiqueta.buscar']}"
+                                                 icon="icon-search ocultarImgIcon"
+                                                 styleClass="btn btn-default btn-sensitive btn-buscar"
+                                                 onclick="PF('statusDialog').show()"
+                                                 oncomplete="PF('statusDialog').hide()"
+                                                 ajax="true"
+                                                 update="frmLista:tblItems"
+                                                 actionListener="#{cartaFianzaMB.buscarCartaFianza}"
+                                        />
+
+
+                                <p:commandButton id="btnLimpiar"
+                                                 styleClass="btn btn-default btn-sensitive btn-buscar"
+                                                 value="#{msgs['boton.etiqueta.limpiar']}"
+                                                 icon="icon-limpiar"
+                                                 onclick="PF('statusDialog').show()"
+                                                 oncomplete="PF('statusDialog').hide()"
+                                                 ajax="true"
+                                                 update=":frmFormulario"
+                                                 actionListener="#{cartaFianzaMB.limpiarFormulario}"
+                                        />
+
+                            </div>
+                        </div>
+                    </h:form>
+                </fieldset>
+
+
+                <ui:include src="listar.xhtml"/>
+
+            </div>
+
+        </div>
+
+        <ui:include src="registrar.xhtml"/>
+
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false"
+                  showHeader="false">
+            <p:graphicImage value="../resources/img/loadingbar.gif"/>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

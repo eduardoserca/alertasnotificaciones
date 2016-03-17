@@ -18,7 +18,6 @@ public class SubOpcion extends BasicObject {
     private String descripcion;
     private String estado;
     private Long orden;
-    private String url;
     private Date fechaCreacion;
     private String usuarioCreacion;
 
@@ -86,11 +85,5 @@ public class SubOpcion extends BasicObject {
         this.codigoSubOpcion = codigoSubOpcion;
     }
 
-    public String getUrl() {
-        return url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 }

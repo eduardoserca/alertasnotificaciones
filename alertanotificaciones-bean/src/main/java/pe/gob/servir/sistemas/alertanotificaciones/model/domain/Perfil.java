@@ -23,6 +23,8 @@ public class Perfil extends BasicObject {
     private List<PerfilOpcion> listaPerfilOpcion;
     private String descripcionEstado;
 
+    private String usuarioModificacion;
+
 
     public Long getPerfilId() {
         return perfilId;
@@ -94,5 +96,13 @@ public class Perfil extends BasicObject {
 
     public void setNombrePerfil(String nombrePerfil) {
         this.nombrePerfil = nombrePerfil;
+    }
+
+    public String getUsuarioModificacion() {
+        return usuarioModificacion;
+    }
+
+    public void setUsuarioModificacion(String usuarioModificacion) {
+        this.usuarioModificacion = usuarioModificacion;
     }
 }

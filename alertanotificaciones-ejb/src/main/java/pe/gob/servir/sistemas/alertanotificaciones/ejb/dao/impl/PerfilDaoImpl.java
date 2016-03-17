@@ -19,7 +19,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jarvis on 13/03/2016.
@@ -45,7 +47,7 @@ public class PerfilDaoImpl extends GenericDAOImpl<Perfil> implements PerfilDao {
 
                 try {
                     connection.setAutoCommit(false);
-                    cstm = connection.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.GET_LTS_PERFIL_ESTADO ( ?,?,?,? ) }");
+                    cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+".ALERTAS_NOTIFICACIONES_PKG.GET_LTS_PERFIL_ESTADO ( ?,?,?,? ) }");
 
                     cstm.setString("vn_code_estado", perfil.getEstado());
                     cstm.setString("vn_des_perfil", perfil.getNombrePerfil());
@@ -116,7 +118,7 @@ public class PerfilDaoImpl extends GenericDAOImpl<Perfil> implements PerfilDao {
 
                 try {
                     //cn.setAutoCommit(false);
-                    cstm = cn.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.REGISTRAR_PERFIL( ?, ?, ?, ?, ?, ?,?) }");
+                    cstm = cn.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+".ALERTAS_NOTIFICACIONES_PKG.REGISTRAR_PERFIL( ?, ?, ?, ?, ?, ?,?) }");
 
                     cstm.registerOutParameter("v_mensaje", OracleTypes.VARCHAR);
                     cstm.registerOutParameter("vn_perfil_id", OracleTypes.NUMBER);
@@ -154,13 +156,108 @@ public class PerfilDaoImpl extends GenericDAOImpl<Perfil> implements PerfilDao {
     }
 
     @Override
-    public Boolean actualizar(Perfil prmT) throws PersistenciaException {
-        return null;
+    public Boolean actualizar(final Perfil perfil) throws PersistenciaException {
+        Boolean actulizado = false;
+        final Map<String, Object> resultado = new HashMap<>();
+
+        Session hbSession = em.unwrap(Session.class);
+
+        hbSession.doWork(new Work() {
+            @Override
+            public void execute(Connection cn) throws SQLException {
+
+                CallableStatement cstm = null;
+
+                try {
+                    //cn.setAutoCommit(false);
+                    cstm = cn.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+".ALERTAS_NOTIFICACIONES_PKG.MODIFICAR_PERFIL( ?, ?, ?,?, ?, ?,?) }");
+
+                    cstm.registerOutParameter("v_mensaje", OracleTypes.VARCHAR);
+                    cstm.setLong("vn_perfil_id", perfil.getPerfilId());
+                    cstm.setString("v_codigo_perfil", perfil.getCodigoPerfil());
+                    cstm.setString("v_nombre_perfil", perfil.getNombrePerfil());
+                    cstm.setString("v_descripcion", perfil.getDescripcion());
+                    cstm.setString("v_estado", perfil.getEstado());
+                    cstm.setString("v_usuario_modifica", perfil.getUsuarioModificacion());
+
+                    cstm.execute();
+
+                    String mensaje = cstm.getString("v_mensaje");
+                    System.out.println("mensaje de error: mensaje = " + mensaje);
+
+                    if (null != mensaje && mensaje.trim().length() > 0) {
+                        throw new SQLException(mensaje);
+                    }
+
+                    resultado.put("actualizado" , "1");
+
+
+                } catch (SQLException e) {
+                    System.out.println(e);
+                    throw new SQLException(e);
+                } finally {
+                    Conexion.closeCallableStatement(cstm);
+                }
+            }
+        });
+
+        if(null != resultado && resultado.get("actualizado").equals("1")){
+            actulizado = true;
+        }
+        return actulizado;
+
+
     }
 
     @Override
-    public Boolean eliminar(Perfil prmT) throws PersistenciaException {
-        return null;
+    public Boolean eliminar(final Perfil perfil) throws PersistenciaException {
+        Boolean eliminado = false;
+        final Map<String, Object> resultado = new HashMap<>();
+
+        Session hbSession = em.unwrap(Session.class);
+
+        hbSession.doWork(new Work() {
+            @Override
+            public void execute(Connection cn) throws SQLException {
+
+                CallableStatement cstm = null;
+
+                try {
+                    //cn.setAutoCommit(false);
+                    cstm = cn.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+".ALERTAS_NOTIFICACIONES_PKG.ELIMINAR_PERFIL( ?, ?) }");
+
+                    cstm.registerOutParameter("v_mensaje", OracleTypes.VARCHAR);
+                    cstm.setString("vn_perfil_id", perfil.getCodigoPerfil());
+                    cstm.setString("v_usuario_modifica", perfil.getUsuarioModificacion());
+
+
+                    cstm.execute();
+
+                    String mensaje = cstm.getString("v_mensaje");
+                    System.out.println("mensaje de error: mensaje = " + mensaje);
+
+                    if (null != mensaje && mensaje.trim().length() > 0) {
+                        throw new SQLException(mensaje);
+                    }
+
+                    resultado.put("eliminado" , "1");
+
+
+                } catch (SQLException e) {
+                    System.out.println(e);
+                    throw new SQLException(e);
+                } finally {
+                    Conexion.closeCallableStatement(cstm);
+                }
+            }
+        });
+
+        if(null != resultado && resultado.get("eliminado").equals("1")){
+            eliminado = true;
+        }
+        return eliminado;
+
+
     }
 
     @Override

@@ -7,6 +7,7 @@ import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.base.impl.GenericDAOI
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.exception.PersistenciaException;
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.inf.UsuarioDao;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Usuario;
+import pe.gob.servir.sistemas.alertanotificaciones.util.Constantes;
 import pe.gob.servir.systems.util.retorno.ReturnObject;
 import pe.gob.servir.systems.util.sql.Conexion;
 
@@ -45,7 +46,7 @@ public class UsuarioDaoImpl extends GenericDAOImpl<Usuario> implements UsuarioDa
 
                 try{
                     connection.setAutoCommit(false);
-                    cstm = connection.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.AUTENTIFICACION ( ?, ?, ?, ? ) }");
+                    cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+ ".ALERTAS_NOTIFICACIONES_PKG.AUTENTIFICACION ( ?, ?, ?, ? ) }");
                     System.out.println("CESC 7 cstm: " + cstm);
 
                     cstm.setString("v_usuario", usuario.getUsuario());

@@ -8,6 +8,7 @@ import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.exception.Persistenci
 import pe.gob.servir.sistemas.alertanotificaciones.ejb.dao.inf.PersonaDao;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Persona;
 import pe.gob.servir.sistemas.alertanotificaciones.model.domain.Usuario;
+import pe.gob.servir.sistemas.alertanotificaciones.util.Constantes;
 import pe.gob.servir.systems.util.retorno.ReturnObject;
 import pe.gob.servir.systems.util.sql.Conexion;
 
@@ -45,7 +46,7 @@ public class PersonaDaoImpl extends GenericDAOImpl<Persona> implements PersonaDa
 
                 try{
                     connection.setAutoCommit(false);
-                    cstm = connection.prepareCall("{ Call ALERTAS.ALERTAS_NOTIFICACIONES_PKG.GET_PERSONA_POR_USUARIO ( ?, ?, ? ) }");
+                    cstm = connection.prepareCall("{ Call "+ Constantes.BD_ESQUEMA+ ".ALERTAS_NOTIFICACIONES_PKG.GET_PERSONA_POR_USUARIO ( ?, ?, ? ) }");
 
                     cstm.setString("v_usuario", usuario);
                     cstm.registerOutParameter("cur_persona", OracleTypes.CURSOR);

@@ -39,15 +39,15 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>OP_CONTROL_TAREAS_SO_CARTA_FIANZA</from-outcome>
-            <to-view-id>/modulo/control-tareas/carta-fianza.xhtml</to-view-id>
+            <to-view-id>/modulo/control-tareas/carta-fianza/carta-fianza.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>OP_CONTROL_TAREAS_SO_DECLARACION_JURADA</from-outcome>
-            <to-view-id>/modulo/control-tareas/declaracion-jurada.xhtml</to-view-id>
+            <to-view-id>/modulo/control-tareas/declaracion-jurada/declaracion-jurada.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>OP_CONTROL_TAREAS_SO_TAREAS_GENERALES</from-outcome>
-            <to-view-id>/modulo/control-tareas/tarea-generales.xhtml</to-view-id>
+            <to-view-id>/modulo/control-tareas/tarea-generales/tarea-generales.xhtml</to-view-id>
         </navigation-case>
 
         <navigation-case>

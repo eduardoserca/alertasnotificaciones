@@ -1,85 +1,226 @@
 <!DOCTYPE html>
 <html
-    lang="es" class="no-js"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
-    <h:head>
-        <meta charset="utf-8"/>
-        <title><ui:insert name="title">Sistema de Alerta y Notificaciones</ui:insert></title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        lang="es" class="no-js"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="utf-8"/>
+    <title><ui:insert name="title">#{msgs['etiqueta.pagina.titulo']}</ui:insert></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-        <meta http-equiv="X-UA-Compatible" content="IE=7,8,9" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7,8,9"/>
 
-        <h:outputStylesheet name="./css/bootstrap.min.css" />
-        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/faces/resources/img/favicon.ico"/>
-        
-        <h:outputScript name="./js/prefixfree.min.js"/>
-        <h:outputScript name="./js/barrarScroll.js"/>
-        <h:outputScript name="./js/bootstrap.min.js"/>
-        <h:outputScript name="./js/scripts.js"/>
-        <h:outputScript name="./js/main/app.js"/>
-		<h:outputScript name="./js/jquery.plugin.min.js"/>
-		<h:outputScript name="./js/jquery.realperson.min.js"/>
-		
-        <h:outputStylesheet name="./css/fonts.css" />
+    <h:outputStylesheet name="./css/bootstrap.min.css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/faces/resources/img/favicon.ico"/>
 
-        <h:outputStylesheet name="./css/styles.css" />
-	    <h:outputStylesheet name="./css/css_font/fontello.css"/>
-        <h:outputStylesheet name="./css/css_font/animation.css"/>
-        <h:outputStylesheet name="./css/main.css" />
-        <h:outputStylesheet name="./css/font-awesome.min.css" />
-       	<h:outputStylesheet name="./css/jquery.realperson.css" />
-        <h:outputScript name="./js/modernizr.js"/>
-	
+    <h:outputScript name="./js/prefixfree.min.js"/>
+    <h:outputScript name="./js/barrarScroll.js"/>
+    <h:outputScript name="./js/bootstrap.min.js"/>
+    <h:outputScript name="./js/scripts.js"/>
+    <h:outputScript name="./js/main/app.js"/>
+    <h:outputScript name="./js/jquery.plugin.min.js"/>
+    <h:outputScript name="./js/jquery.realperson.min.js"/>
 
-        <h:outputText
-       value="&lt;!--[if IE 7]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;fontello-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
-        escape="false" />
-        <h:outputText
-       value="&lt;!--[if lte IE 7]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;ie6-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
-        escape="false" />
+    <h:outputStylesheet name="./css/fonts.css"/>
 
-		<style>
-			.content-wrapper{
-				/*min-height: inherit;*/
-                min-height:100%;
-                padding-bottom: 0;
-			}
-            #box-cont-login{
-                min-height:100%;
-            }
-            footer{
-                  position: relative;
-            }
-		</style>
-		<style>
-			#main-login{background:#fff;min-width:309px;width:28%;margin:0 auto;max-width:33%;margin-top:3%;box-shadow:0 5px 10px rgba(0,0,0,0.5)}#main-login #linkOlvidopass{font-size:12px}#main-login #headerLogin{background:#1A171B;color:#fff;font-family:"Roboto",sans-serif;}#main-login #headerLogin img{display:inline-block;vertical-align:middle}#main-login #headerLogin .sidelLogo{font-size:17px;display:inline-block;line-height:36px;vertical-align:middle;height:36px}#main-login #headerLogin .sideltexto{font-weight: 100;font-size:18px;padding:15px 0px 6px;line-height: 24px;display:block;opacity:.7}#main-login #headerLogin .colorCeleste{padding-top: 9px;padding-bottom: 6px;text-align:center;background:#BA0400}#main-login i{opacity:.7;color:"Roboto",sans-serif}#main-login .ui-inputfield,#main-login .input-group-addon{border-radius:0px;background:none}#main-login input{outline:none;box-shadow:none}#main-login button{border-radius:0;text-shadow:none;color:#fff;background:#BA0400;width:100%;padding:4px}#main-login .checkbox{font-size:13px;margin:15px 0 0;display: inline-block;}#box-nv-rc{float:right;margin-top: 15px;}#main-login .checkbox span{vertical-align:3px;margin-left:4px}#main-login .right a{font-size:13px;display:block}#main-login .right a:hover{color:"Roboto",sans-serif;text-decoration:underline}#main-login form{padding:40px 15px}#main-login form input[placeholder]{color:#808080;font-size:12px;font-style:oblique}.navegador,#boxNave{font-size:11px;opacity:.6;display:inline-block;vertical-align:middle;margin-right:5px;line-height: 12px}#firefox,#chrome{display:inline-block;vertical-align:middle;width:27px;height:27px;background-size:64px auto !important;opacity:.4;transition:all 150ms ease-out}#firefox:hover,#chrome:hover{opacity:1}#firefox{background:url("../../resources/img/sprites.png") -38px 0 no-repeat}#chrome{background:url("../../resources/img/sprites.png") 0 0 no-repeat;margin-right:0px}
-		</style>
-        <h:outputText>
-            <!-- <link type="text/css" rel="stylesheet" href="./css/ie.css"/> -->
-        </h:outputText>
+    <h:outputStylesheet name="./css/styles.css"/>
+    <h:outputStylesheet name="./css/css_font/fontello.css"/>
+    <h:outputStylesheet name="./css/css_font/animation.css"/>
+    <h:outputStylesheet name="./css/main.css"/>
+    <h:outputStylesheet name="./css/font-awesome.min.css"/>
+    <h:outputStylesheet name="./css/jquery.realperson.css"/>
+    <h:outputScript name="./js/modernizr.js"/>
 
-        <!--[if IE 9]>
-            <link type="text/css" rel="stylesheet" href="./css/ie.css"
-        <![endif]-->
 
-        <!--[if lt IE 9]>
-          <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
-        <![endif]-->
+    <h:outputText
+            value="&lt;!--[if IE 7]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;fontello-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
+            escape="false"/>
+    <h:outputText
+            value="&lt;!--[if lte IE 7]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;ie6-ie7.css&quot; /&gt;&lt;![endif]--&gt;"
+            escape="false"/>
 
-        <!--[if gte IE 9]>
-        <style type="text/css">
-        .gradient {
-        filter: none;
+    <style>
+        .content-wrapper {
+            /*min-height: inherit;*/
+            min-height: 100%;
+            padding-bottom: 0;
         }
-        </style>
-        <![endif]-->
-        <ui:insert name="headCont"></ui:insert>
 
-    </h:head>
+        #box-cont-login {
+            min-height: 100%;
+        }
+
+        footer {
+            position: relative;
+        }
+    </style>
+    <style>
+        #main-login {
+            background: #fff;
+            min-width: 309px;
+            width: 28%;
+            margin: 0 auto;
+            max-width: 33%;
+            margin-top: 3%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5)
+        }
+
+        #main-login #linkOlvidopass {
+            font-size: 12px
+        }
+
+        #main-login #headerLogin {
+            background: #1A171B;
+            color: #fff;
+            font-family: "Roboto", sans-serif;
+        }
+
+        #main-login #headerLogin img {
+            display: inline-block;
+            vertical-align: middle
+        }
+
+        #main-login #headerLogin .sidelLogo {
+            font-size: 17px;
+            display: inline-block;
+            line-height: 36px;
+            vertical-align: middle;
+            height: 36px
+        }
+
+        #main-login #headerLogin .sideltexto {
+            font-weight: 100;
+            font-size: 18px;
+            padding: 15px 0px 6px;
+            line-height: 24px;
+            display: block;
+            opacity: .7
+        }
+
+        #main-login #headerLogin .colorCeleste {
+            padding-top: 9px;
+            padding-bottom: 6px;
+            text-align: center;
+            background: #BA0400
+        }
+
+        #main-login i {
+            opacity: .7;
+            color: "Roboto", sans-serif
+        }
+
+        #main-login .ui-inputfield, #main-login .input-group-addon {
+            border-radius: 0px;
+            background: none
+        }
+
+        #main-login input {
+            outline: none;
+            box-shadow: none
+        }
+
+        #main-login button {
+            border-radius: 0;
+            text-shadow: none;
+            color: #fff;
+            background: #BA0400;
+            width: 100%;
+            padding: 4px
+        }
+
+        #main-login .checkbox {
+            font-size: 13px;
+            margin: 15px 0 0;
+            display: inline-block;
+        }
+
+        #box-nv-rc {
+            float: right;
+            margin-top: 15px;
+        }
+
+        #main-login .checkbox span {
+            vertical-align: 3px;
+            margin-left: 4px
+        }
+
+        #main-login .right a {
+            font-size: 13px;
+            display: block
+        }
+
+        #main-login .right a:hover {
+            color: "Roboto", sans-serif;
+            text-decoration: underline
+        }
+
+        #main-login form {
+            padding: 40px 15px
+        }
+
+        #main-login form input[placeholder] {
+            color: #808080;
+            font-size: 12px;
+            font-style: oblique
+        }
+
+        .navegador, #boxNave {
+            font-size: 11px;
+            opacity: .6;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+            line-height: 12px
+        }
+
+        #firefox, #chrome {
+            display: inline-block;
+            vertical-align: middle;
+            width: 27px;
+            height: 27px;
+            background-size: 64px auto !important;
+            opacity: .4;
+            transition: all 150ms ease-out
+        }
+
+        #firefox:hover, #chrome:hover {
+            opacity: 1
+        }
+
+        #firefox {
+            background: url("../../resources/img/sprites.png") -38px 0 no-repeat
+        }
+
+        #chrome {
+            background: url("../../resources/img/sprites.png") 0 0 no-repeat;
+            margin-right: 0px
+        }
+    </style>
+    <h:outputText>
+        <!-- <link type="text/css" rel="stylesheet" href="./css/ie.css"/> -->
+    </h:outputText>
+
+    <!--[if IE 9]>
+        <link type="text/css" rel="stylesheet" href="./css/ie.css"
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js"></script>
+    <![endif]-->
+
+    <!--[if gte IE 9]>
+    <style type="text/css">
+    .gradient {
+    filter: none;
+    }
+    </style>
+    <![endif]-->
+    <ui:insert name="headCont"></ui:insert>
+
+</h:head>
 <h:body>
     <div id="box-cont-login">
         <!-- HEADER END-->
@@ -92,197 +233,206 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    
+
                     <p:commandLink actionListener="#{seguridadMB.login()}">
-                         <span id="box-logo" class="navbar-brand" >
+                         <span id="box-logo" class="navbar-brand">
                             servir
-                        </span>  
+                        </span>
                     </p:commandLink>
-                    
-     
+
+
                 </div>
 
                 <div class="left-div">
-                    <span>Sistema de Consultas Externas</span>
-                    <small>Version 1.0.0.0</small>
+                    <span>#{msgs['etiqueta.pagina.titulo']}</span>
+                    <small>#{msgs['etiqueta.pagina.version']}</small>
                 </div>
             </div>
         </div>
         <div style="visibility:hidden;">
-							#{mailSchedulerMB.sw}
-							</div>
+            #{mailSchedulerMB.sw}
+        </div>
         <!-- LOGO HEADER END-->
         <div class="content-wrapper box_main_app clearfix">
-        	<div id="main-login" class="row" style="width: 377px">
-        		<div class="col-xs-12">
-        			<div class="iso"></div>
-        			<div id="headerLogin" class="row">
-        				<div class="col-xs-4 colorCeleste">
-        					<img src="../../resources/img/sigdac-logo.png" alt="" width="32"/>
-        					<span class="img-circle sidelLogo"> Libro Virtual de Reclamaciones</span>
-        				</div>
-        				<div class="col-xs-8 colorBlack">
-        					<span class="sideltexto">Bienvenido</span>
-        				</div>
-        			</div>
-    				<h:form styleClass="clearfix" id="formLogin">
-    					   <p:growl id="mensaje" showDetail="true" sticky="false"  life="5000"/>
-    					   
-    					  <div class="form-group">
-    						    <div class="input-group">
-    						      <div class="input-group-addon" ><i class="fa fa-user"> </i></div>
-    						      <p:inputText 	id="txtUsuario" value="#{seguridadMB.usuario.usuario}" 
-    						      				maxlength="30"  
-    						      				style="text-transform:uppercase"
-    						      				required="false" styleClass="form-control"
-    						      				tabindex="1"/>
-    						      <p:watermark for="txtUsuario" value="Ingrese su usuario" />
-    						    </div>
-    					  </div>
-    					  <div class="form-group">
-    						    <div class="input-group">
-    						      <div class="input-group-addon"><i class="fa fa-key"></i></div>
-    						      <p:password id="txPassWord" value="#{seguridadMB.usuario.clave}" maxlength="30" required="false" styleClass="form-control" tabindex="2"/>
-    						      <p:watermark for="txPassWord" value="Ingrese su clave" />
-    						    </div>
-    					  </div>
-						  	
-					    <div class="captcha form-group" align="center">					    		
-						    <input type="text" Class="formulario form-control" maxlength="6"
-					               id="defaultReal" name="defaultReal" placeholder="Ingrese el código"  style=" text-transform: uppercase;font-style: normal;" 
-					               size="20"  tabindex="3" autocomplete="off" />
- 					         
-					    </div>
-					      
-					    
-    					  <p:commandButton 	id="btnIngresar"
-    					  					tabindex="4"
-    					  					action="#{seguridadMB.validar()}"
-    					  					ajax="false"
-    					  					styleClass="btn btn-primary"
-    					  					update="mensaje"
-    					  					value="Ingresar" />
-						<!-- 
-						<p:commandButton 	id="btnTest"
-    					  					action="#{seguridadMB.test()}"
-    					  					ajax="false"
-    					  					styleClass="btn btn-primary"
-    					  					value="Test" />
-    					  -->
-<!-- 
-    				    <div class="">
+            <div id="main-login" class="row" style="width: 377px">
+                <div class="col-xs-12">
+                    <div class="iso"></div>
+                    <div id="headerLogin" class="row">
+                        <div class="col-xs-12 text-center colorBlack">
+                            <span class="sideltexto"><b>Bienvenido</b></span>
+                        </div>
+                    </div>
+                    <h:form styleClass="clearfix" id="formLogin">
+                        <p:growl id="mensaje" showDetail="true" sticky="false" life="5000"/>
 
-                          <div class="checkbox">
-
-                            <div class="right" style="display:block">
-                                    <p:commandLink href="#"  value="Olvidé mi clave"/>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-user"> </i></div>
+                                <p:inputText id="txtUsuario" value="#{seguridadMB.usuario.usuario}"
+                                             maxlength="30"
+                                             style="text-transform:uppercase"
+                                             required="false" styleClass="form-control"
+                                             tabindex="1"/>
+                                <p:watermark for="txtUsuario" value="Ingrese su usuario"/>
                             </div>
-                          </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-key"></i></div>
+                                <p:password id="txPassWord" value="#{seguridadMB.usuario.clave}" maxlength="30"
+                                            required="false" styleClass="form-control" tabindex="2"/>
+                                <p:watermark for="txPassWord" value="Ingrese su clave"/>
+                            </div>
+                        </div>
 
-    				    </div>
- -->
-    				</h:form>
-        		</div>
-        	</div>
+                        <div class="captcha form-group" align="center">
+                            <input type="text" Class="formulario form-control" maxlength="6"
+                                   id="defaultReal" name="defaultReal" placeholder="Ingrese el código"
+                                   style=" text-transform: uppercase;font-style: normal;"
+                                   size="20" tabindex="3" autocomplete="off"/>
+
+                        </div>
+
+
+                        <p:commandButton id="btnIngresar"
+                                         tabindex="4"
+                                         action="#{seguridadMB.validar()}"
+                                         ajax="false"
+                                         styleClass="btn btn-primary"
+                                         update="mensaje"
+                                         value="Ingresar"/>
+                        <!--
+                        <p:commandButton 	id="btnTest"
+                                              action="#{seguridadMB.test()}"
+                                              ajax="false"
+                                              styleClass="btn btn-primary"
+                                              value="Test" />
+                          -->
+                        <!--
+                                                <div class="">
+
+                                                  <div class="checkbox">
+
+                                                    <div class="right" style="display:block">
+                                                            <p:commandLink href="#"  value="Olvidé mi clave"/>
+                                                    </div>
+                                                  </div>
+
+                                                </div>
+                         -->
+                    </h:form>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- CONTENT-WRAPPER SECTION END-->
     <footer>
-    <div class="grisFooter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6" style="margin-top: 6px;">
+        <div class="grisFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6" style="margin-top: 6px;">
 
-                     <!-- <p><small>Aplicativo Admistrado por la Unidad de Sistemas y Tecnologías</small></p> -->
-                     <p><small>Aplicativo Admistrado por Subjefatura de Tecnología de la Información</small></p>
-                     <p><small>Pasaje Francisco de Zela 150 - Piso 10, Jesus María, Lima, Perú</small></p>
-                     <p><small><span class="icon-mobile"></span>206 3370 Anexo 1100 | <span class="glyphicon glyphicon-envelope"></span> info@servir.gob.pe </small></p>
+                        <!-- <p><small>Aplicativo Admistrado por la Unidad de Sistemas y Tecnologías</small></p> -->
+                        <p>
+                            <small>Aplicativo Admistrado por Subjefatura de Tecnología de la Información</small>
+                        </p>
+                        <p>
+                            <small>Pasaje Francisco de Zela 150 - Piso 10, Jesus María, Lima, Perú</small>
+                        </p>
+                        <p>
+                            <small><span class="icon-mobile"></span>206 3370 Anexo 1100 | <span
+                                    class="glyphicon glyphicon-envelope"></span> info@servir.gob.pe
+                            </small>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <img src="../../resources/img/img_inst.png" alt="" width="450px" style="padding:10px 0"/>
+                    </div>
                 </div>
-				<div class="col-md-6 text-right">
-					<img src="../../resources/img/img_inst.png" alt="" width="450px" style="padding:10px 0" />
-				</div>
             </div>
         </div>
-    </div>
 
-    <div class="redFooter">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                     <span>Autoridad Nacional del Servicio Civil (SERVIR) - Todos los derechos reservados</span>
+        <div class="redFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Autoridad Nacional del Servicio Civil (SERVIR) - Todos los derechos reservados</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    
-  		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" closeOnEscape="true" rendered="true">
-			<p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-		</p:confirmDialog>
-  
+
+
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" closeOnEscape="true" rendered="true">
+            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+        </p:confirmDialog>
+
     </footer>
-<div id="boxValidateLogin" class="ui-growl ui-widget" style="z-index: 1001;">
-    <div class="ui-growl-item-container ui-state-highlight ui-corner-all ui-helper-hidden ui-shadow msgAlert" aria-live="polite">
-        <div class="ui-growl-item">
-            <div class="ui-growl-icon-close ui-icon ui-icon-closethick btnCloseAlert"></div>
-            <span class="ui-growl-image ui-growl-image-warn"></span>
+    <div id="boxValidateLogin" class="ui-growl ui-widget" style="z-index: 1001;">
+        <div class="ui-growl-item-container ui-state-highlight ui-corner-all ui-helper-hidden ui-shadow msgAlert"
+             aria-live="polite">
+            <div class="ui-growl-item">
+                <div class="ui-growl-icon-close ui-icon ui-icon-closethick btnCloseAlert"></div>
+                <span class="ui-growl-image ui-growl-image-warn"></span>
+
                 <div class="ui-growl-message">
                     <span class="ui-growl-title">Aviso</span>
+
                     <p id="box-info-alert">Usuario o clave incorrecta, por favor inténtentelo nuevamente!</p>
                 </div>
-            <div style="clear: both;">            
+                <div style="clear: both;">
+                </div>
             </div>
         </div>
     </div>
-</div> 
-<script>
-    jQuery(document).ready(function($) {
-        var div_alto_pag = $(window).height();
-     
-        var box_main_app= $("#box_main_app").height();
+    <script>
+        jQuery(document).ready(function ($) {
+            var div_alto_pag = $(window).height();
 
-        var footer_height= $("footer").height();
-         
-        var rstd = div_alto_pag  - footer_height;
+            var box_main_app = $("#box_main_app").height();
 
-        $("#box-cont-login").height(rstd);
+            var footer_height = $("footer").height();
 
-    });
+            var rstd = div_alto_pag - footer_height;
 
-</script>
+            $("#box-cont-login").height(rstd);
 
-<script type="text/javascript">
-    $(function() {
-        $('#defaultReal').realperson();
-    });
-    $("#formLogin\\:btnIngresar").click(function() {
+        });
 
-        if( $("#formLogin\\:txtUsuario").val() == "" ){
-            $("#formLogin\\:txtUsuario").focus();
-            $(".msgAlert").fadeIn("slow")
-            $("#box-info-alert").html("<span>Ingrese un nombre de usuario</span>");
+    </script>
 
-            setTimeout(function(){
-                $(".msgAlert").fadeOut(1500);
-            },5000);
+    <script type="text/javascript">
+        $(function () {
+            $('#defaultReal').realperson();
+        });
+        $("#formLogin\\:btnIngresar").click(function () {
 
-            return false;
-        }else if( $("#formLogin\\:txPassWord").val() == "" ){
-            $("#formLogin\\:txPassWord").focus();
-            $(".msgAlert").fadeIn("slow")
-            $("#box-info-alert").html("<span>Ingrese clave</span>");
-            setTimeout(function(){
-                $(".msgAlert").fadeOut(1500);
-            },5000);
-            return false;
-        }            
-    }); 
+            if ($("#formLogin\\:txtUsuario").val() == "") {
+                $("#formLogin\\:txtUsuario").focus();
+                $(".msgAlert").fadeIn("slow")
+                $("#box-info-alert").html("<span>Ingrese un nombre de usuario</span>");
 
-    $(".btnCloseAlert").click(function() {
-        $(".msgAlert").fadeOut();
-    });   
-</script>
+                setTimeout(function () {
+                    $(".msgAlert").fadeOut(1500);
+                }, 5000);
+
+                return false;
+            } else if ($("#formLogin\\:txPassWord").val() == "") {
+                $("#formLogin\\:txPassWord").focus();
+                $(".msgAlert").fadeIn("slow")
+                $("#box-info-alert").html("<span>Ingrese clave</span>");
+                setTimeout(function () {
+                    $(".msgAlert").fadeOut(1500);
+                }, 5000);
+                return false;
+            }
+        });
+
+        $(".btnCloseAlert").click(function () {
+            $(".msgAlert").fadeOut();
+        });
+    </script>
 </h:body>
 </html>

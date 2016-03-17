@@ -14,7 +14,8 @@ import java.util.List;
 public interface SeguridadRemoto {
 
     public List<Perfil> obtenerPerfilPorEstado(Perfil perfil) throws PersistenciaException;
-    public ReturnObject registrarPerfil(final Perfil perfil) throws PersistenciaException;
+    public ReturnObject registrarPerfil(Perfil perfil) throws PersistenciaException;
+    public Boolean eliminarPerfil(Perfil perfil) throws PersistenciaException;
 
 
 
